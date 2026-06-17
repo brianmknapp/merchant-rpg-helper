@@ -6,9 +6,9 @@ import rawEquipmentList from "@/lib/EquipmentList.json";
 import rawHeroList from "@/lib/HeroList.json";
 import rawQuestList from "@/lib/QuestList.json";
 import { resolveMerchantAssetPath } from "@/lib/merchant-assets";
-import rawFormulaList from "@/vendor/MerchantGameDB-master/json/FormulaList.json";
-import rawPrefixList from "@/vendor/MerchantGameDB-master/json/PrefixList.json";
-import rawSuffixList from "@/vendor/MerchantGameDB-master/json/SuffixList.json";
+import rawFormulaList from "@/lib/FormulaList.json";
+import rawPrefixList from "@/lib/PrefixList.json";
+import rawSuffixList from "@/lib/SuffixList.json";
 
 type RawAffix = {
   name: string;
