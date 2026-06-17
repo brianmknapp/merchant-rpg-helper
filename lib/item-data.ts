@@ -1,9 +1,9 @@
 import rawEquipmentList from "@/lib/EquipmentList.json";
-import rawMaterialList from "@/vendor/MerchantGameDB-master/json/MaterialList.json";
-import rawFormulaList from "@/vendor/MerchantGameDB-master/json/FormulaList.json";
-import rawGradeList from "@/vendor/MerchantGameDB-master/json/GradeList.json";
-import rawPrefixList from "@/vendor/MerchantGameDB-master/json/PrefixList.json";
-import rawSuffixList from "@/vendor/MerchantGameDB-master/json/SuffixList.json";
+import rawMaterialList from "@/lib/MaterialList.json";
+import rawFormulaList from "@/lib/FormulaList.json";
+import rawGradeList from "@/lib/GradeList.json";
+import rawPrefixList from "@/lib/PrefixList.json";
+import rawSuffixList from "@/lib/SuffixList.json";
 import { resolveMerchantAssetPath } from "@/lib/merchant-assets";
 
 export type GearSlot = "weapon" | "head" | "body" | "hands" | "feet" | "trinket";

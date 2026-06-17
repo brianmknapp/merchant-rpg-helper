@@ -7,6 +7,11 @@ This folder contains the core game data extracted from MerchantGameDB-master.
 - `HeroList.json` – Hero class definitions with base stats, skills, and growth rates.
 - `QuestList.json` – Quest/enemy definitions with stat blocks and rewards.
 - `EquipmentList.json` – Craftable and dropped equipment data with slot and bonus stats.
+- `MaterialList.json` – Material metadata used by recipes and item ingredient display.
+- `FormulaList.json` – Base stat formulas used to compute equipment static stats.
+- `GradeList.json` – Item grade ranges used for grade option generation.
+- `PrefixList.json` – Prefix affix definitions and stat modifiers.
+- `SuffixList.json` – Suffix affix definitions and stat modifiers.
 - `bis-guide.json` – Normalized build/slot recommendations parsed from Jackal's Merchant BIS workbook.
 - `bis-guide.ts` – Query helpers for hero/build/tier/slot BIS lookups.
 
@@ -21,6 +26,8 @@ Each entry in these JSON files follows the schema used by the Merchant RPG game.
 ## Source
 
 Extracted from `MerchantGameDB-master/json/` as a one-time import. Any future updates to game balance should be copied here to keep the simulator in sync with the canonical game data.
+
+App/runtime code should import these datasets from `lib/*.json` (for example, `lib/item-data.ts`) rather than directly from `vendor/`, so tests and CI are not coupled to untracked vendor files.
 
 `bis-guide.json` is generated from `vendor/Jackal's Merchant BIS Guide.xlsx` via `npm run bis:parse`.
 
