@@ -121,7 +121,9 @@ const heroes: Hero[] = (rawHeroList as RawHero[]).map((hero) => ({
     intToMatkByPrestige: hero.intMod ?? [0],
     dexToAccByPrestige: hero.dexMod ?? [0],
   },
-  iconPath: `/merchant-db/Icn_Hero_${hero.name.replace(/\s+/g, "_")}.png`,
+  iconPath:
+    toPublicAssetPath(`/merchant-db/Icn_Hero_${hero.name.replace(/\s+/g, "_")}.png`) ??
+    `/merchant-db/Icn_Hero_${hero.name.replace(/\s+/g, "_")}.png`,
 }));
 
 function readBonusValue(value?: RawBonusValue) {
