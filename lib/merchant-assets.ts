@@ -1,10 +1,9 @@
 import fs from "fs";
 import path from "path";
+import { normalizeBasePath } from "@/lib/base-path";
 
 const merchantAssetPaths = new Set<string>();
-const rawBasePath = process.env.NEXT_PUBLIC_BASE_PATH?.trim() ?? "";
-const normalizedBasePath =
-  rawBasePath && rawBasePath !== "/" ? rawBasePath.replace(/\/+$/, "") : "";
+const normalizedBasePath = normalizeBasePath(process.env.NEXT_PUBLIC_BASE_PATH);
 
 function withConfiguredBasePath(assetPath: string) {
   return normalizedBasePath ? `${normalizedBasePath}${assetPath}` : assetPath;
@@ -85,5 +84,6 @@ export function resolveMerchantAssetPath(rawPath: string | null | undefined) {
 
   return null;
 }
+
 
 

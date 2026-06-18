@@ -1,0 +1,13 @@
+import { describe, expect, test } from "@jest/globals";
+import { normalizeBasePath } from "@/lib/base-path";
+
+describe("normalizeBasePath", () => {
+  test("returns empty string for root path", () => {
+    expect(normalizeBasePath("/")).toBe("");
+  });
+
+  test("adds a leading slash and trims trailing slashes", () => {
+    expect(normalizeBasePath("merchant-rpg-helper///")).toBe("/merchant-rpg-helper");
+  });
+});
+
