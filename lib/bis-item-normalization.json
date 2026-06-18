@@ -1,0 +1,44 @@
+{
+  "blankValues": [
+    "-||-"
+  ],
+  "itemAliases": {
+    "Aeon Heart": "Heart of Aeon",
+    "Archon's Chest": "Archon's Embrace",
+    "Arthos' Axe": "Athos' Axe",
+    "Basamus'": "Basamus' Ring",
+    "BD Gauntlets": "Black Dragon Gauntlets",
+    "BD Sabatons": "Black Dragon Sabatons",
+    "Cerb. Pendant": "Cerberus' Pendant",
+    "ED Crakows": "Elder Demon Crakows",
+    "ED Gauntlets": "Elder Demon Gauntlets",
+    "ED Mitts": "Elder Demon Mitts",
+    "Fighter's Greaves": "Fighters Greaves",
+    "Galam's Ring": "Furious Ring",
+    "Galam's Rung": "Furious Ring",
+    "Gungrir": "Gungnir",
+    "Highpriest's": "Priest's Necklace",
+    "Highpriest's Necklace": "Priest's Necklace",
+    "Khan Medallion": "Khan's Medallion",
+    "Kirin's Sun-ate": "Kirin's Sune-Ate",
+    "Levi's Bite": "Leviathan's Bite",
+    "Magnataur's Greaves": "Magnotaur's Sabatons",
+    "Murlock Crakows": "Murlok Crakows",
+    "Murlock Mitts": "Murlok Mitts",
+    "Murlock Robe": "Murlok Robe",
+    "Preist's Necklace": "Priest's Necklace",
+    "Protector's Gift": "Gift of the Forest",
+    "RotM": "Ring of the Mountain",
+    "Tidal Scepter": "Tidal Sceptre",
+    "Undead Trinket": "Undead Pendant"
+  },
+  "contextualAliases": [
+    {
+      "hero": "Warrior",
+      "slot": "hands",
+      "value": "ED",
+      "replacement": "Elder Demon Gauntlets"
+    }
+  ]
+}
+

@@ -2,14 +2,14 @@
 
 import Image from "next/image";
 import { useEffect, useMemo, useRef, useState } from "react";
-import { ChevronLeft, ChevronRight, RotateCcw, Save, ArrowUpDown, X } from "lucide-react";
+import { ChevronLeft, ChevronRight, RotateCcw, Save, ArrowUpDown, X, Plus, Trash2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { cn } from "@/lib/utils";
-import type { GearItem, Hero, Quest } from "@/app/components/phase1-simulator";
+import type { GearItem, Hero } from "@/app/components/phase1-simulator";
 
 type GearSlot = GearItem["slot"];
 
@@ -22,6 +22,28 @@ type HeroAttributes = {
   int: number;
   dex: number;
 };
+
+type HeroComputedStats = {
+  hp: number;
+  currentHp: number;
+  atk: number;
+  matk: number;
+  def: number;
+  mdef: number;
+  acc: number;
+  crit: number;
+  str: number;
+  int: number;
+  dex: number;
+  lck: number;
+  speed: number;
+  ap: number;
+  exp: number;
+  critDmg: number;
+  gold: number;
+};
+
+type HeroStatOverrides = Partial<HeroComputedStats>;
 
 type ExactGearBonusOverrides = Partial<GearBonus>;
 
@@ -48,9 +70,14 @@ type HeroSaveState = {
   prestige: PrestigeLevel;
   attributes: HeroAttributes;
   equipped: Record<GearSlot, EquippedSlot>;
+  statOverrides: HeroStatOverrides;
   // Legacy fields retained for migration from older local saves.
   gearPrefix?: string | null;
   gearSuffix?: string | null;
+};
+
+type RosterHeroSaveState = HeroSaveState & {
+  heroId: number;
 };
 
 type GearBonus = {
@@ -82,9 +109,9 @@ type EquippedSlotMap = Partial<Record<GearSlot, Partial<EquippedSlot>>>;
 
 type SaveState = {
   version: 1;
-  selectedHeroId: number;
-  selectedQuestId: number;
-  heroes: Record<number, HeroSaveState>;
+  gameMode: string;
+  selectedHeroId: string;
+  heroes: Record<string, RosterHeroSaveState>;
 };
 
 export type BisEntrySuggestion = {
@@ -100,14 +127,19 @@ export type BisEntrySuggestion = {
 
 type HeroRosterSimulatorProps = {
   heroes: Hero[];
-  quests: Quest[];
   gearItems: GearItem[];
   bisEntries: BisEntrySuggestion[];
   prefixOptions: Array<{ id: string; name: string; stats: Record<string, number>; ascLevel: number | null }>;
   suffixOptions: Array<{ id: string; name: string; stats: Record<string, number>; ascLevel: number | null }>;
+  gameMode: string;
+  onBackClick?: () => void;
 };
 
-const STORAGE_KEY = "merchant-rpg-helper.hero-roster.v1";
+const STORAGE_KEY_PREFIX = "merchant-rpg-helper.hero-roster.v1";
+
+function getStorageKey(gameMode: string): string {
+  return `${STORAGE_KEY_PREFIX}.${gameMode}`;
+}
 
 const GEAR_SLOT_LABELS: Record<GearSlot, string> = {
   weapon: "Weapon",
@@ -126,6 +158,14 @@ const QUALITY_LABELS: Record<GearQuality, string> = {
   B: "B (x1.1)",
   A: "A (x1.2)",
   S: "S (x1.5)",
+};
+
+const QUALITY_ICON_PATHS: Record<GearQuality, string> = {
+  D: "/merchant-db/grades/quest_grade_D-edit.png",
+  C: "/merchant-db/grades/quest_grade_C-edit.png",
+  B: "/merchant-db/grades/quest_grade_B-edit.png",
+  A: "/merchant-db/grades/quest_grade_A-edit.png",
+  S: "/merchant-db/grades/quest_grade_S-edit.png",
 };
 
 const QUALITY_MULTIPLIER: Record<GearQuality, number> = {
@@ -269,6 +309,26 @@ const ITEM_EXTRA_STAT_LABELS: Array<[keyof GearBonus, string]> = [
   ["gold", "GOLD"],
 ];
 
+const HERO_STAT_FIELDS: Array<[keyof HeroComputedStats, string]> = [
+  ["hp", "Max HP"],
+  ["currentHp", "Current HP"],
+  ["atk", "ATK"],
+  ["matk", "MATK"],
+  ["def", "DEF"],
+  ["mdef", "MDEF"],
+  ["acc", "ACC"],
+  ["crit", "CRIT"],
+  ["str", "STR"],
+  ["int", "INT"],
+  ["dex", "DEX"],
+  ["lck", "LUCK"],
+  ["speed", "SPEED"],
+  ["ap", "AP"],
+  ["exp", "XP%"],
+  ["critDmg", "CDMG%"],
+  ["gold", "GOLD"],
+];
+
 const EMPTY_STATS = {
   hp: 0,
   atk: 0,
@@ -390,10 +450,6 @@ function applyExactBonusOverrides(
   return next;
 }
 
-function hasExactBonusOverrides(exactBonus: ExactGearBonusOverrides | null | undefined) {
-  return Boolean(exactBonus && Object.keys(exactBonus).length > 0);
-}
-
 function isAffixUnlocked(
   affix: { ascLevel?: number | null } | undefined,
   prestige: PrestigeLevel,
@@ -475,7 +531,37 @@ function createHeroSaveState(hero?: Hero): HeroSaveState {
       feet: { ...DEFAULT_EQUIPPED_SLOTS.feet },
       trinket: { ...DEFAULT_EQUIPPED_SLOTS.trinket },
     },
+    statOverrides: {},
   };
+}
+
+function createRosterHeroSaveState(hero: Hero): RosterHeroSaveState {
+  return {
+    ...createHeroSaveState(hero),
+    heroId: hero.id,
+  };
+}
+
+function createRosterHeroId(heroId: number): string {
+  return `${heroId}-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`;
+}
+
+function normalizeStatOverrides(input: unknown): HeroStatOverrides {
+  if (!input || typeof input !== "object") {
+    return {};
+  }
+
+  const rawOverrides = input as Record<string, unknown>;
+  const normalized: HeroStatOverrides = {};
+
+  HERO_STAT_FIELDS.forEach(([key]) => {
+    const value = rawOverrides[key];
+    if (typeof value === "number" && Number.isFinite(value)) {
+      normalized[key] = value;
+    }
+  });
+
+  return normalized;
 }
 
 function clampHeroLevel(value: number) {
@@ -494,6 +580,20 @@ function getProgressionValue(values: number[] | undefined, prestige: PrestigeLev
     return fallback;
   }
   return values[prestige] ?? values[0] ?? fallback;
+}
+
+function getBaseApForLevel(level: number): number {
+  if (level < 10) {
+    return 0;
+  }
+  if (level >= 40) {
+    return 20;
+  }
+  // At level 10: 5 AP
+  // Every 2 levels afterward: +1 AP
+  const levelsAfter10 = level - 10;
+  const apGain = Math.floor(levelsAfter10 / 2);
+  return 5 + apGain;
 }
 
 function getHeroScalingForPrestige(hero: Hero, prestige: PrestigeLevel) {
@@ -522,12 +622,12 @@ function getHeroStatsForProgression(hero: Hero, level: number, prestige: Prestig
   };
 }
 
-function createDefaultSaveState(heroes: Hero[], quests: Quest[]): SaveState {
+function createDefaultSaveState(gameMode: string): SaveState {
   return {
     version: 1,
-    selectedHeroId: heroes[0]?.id ?? 0,
-    selectedQuestId: quests[0]?.id ?? 0,
-    heroes: Object.fromEntries(heroes.map((hero) => [hero.id, createHeroSaveState(hero)])),
+    gameMode,
+    selectedHeroId: "",
+    heroes: {},
   };
 }
 
@@ -555,6 +655,7 @@ function normalizeHeroState(hero: Hero, input: Partial<HeroSaveState> | undefine
       feet: normalizeSlotState(equipped.feet, legacyPrefix, legacySuffix),
       trinket: normalizeSlotState(equipped.trinket, legacyPrefix, legacySuffix),
     },
+    statOverrides: normalizeStatOverrides(input?.statOverrides),
   };
 }
 
@@ -577,40 +678,70 @@ function normalizeSlotState(
   };
 }
 
-function normalizeSaveState(heroes: Hero[], quests: Quest[], input: SaveState | null | undefined): SaveState {
-  const fallback = createDefaultSaveState(heroes, quests);
+function normalizeSaveState(gameMode: string, heroes: Hero[], input: SaveState | null | undefined): SaveState {
+  const fallback = createDefaultSaveState(gameMode);
   if (!input || input.version !== 1) {
     return fallback;
   }
 
+  // Only include heroes that were explicitly saved, not all available heroes.
+  const heroMap: Record<string, RosterHeroSaveState> = {};
+
+  Object.entries(input.heroes ?? {}).forEach(([rosterHeroId, rawHeroState]) => {
+    const parsedHeroState = rawHeroState as Partial<RosterHeroSaveState>;
+    const legacyHeroId = Number(rosterHeroId);
+    const heroId =
+      typeof parsedHeroState.heroId === "number" && Number.isFinite(parsedHeroState.heroId)
+        ? parsedHeroState.heroId
+        : legacyHeroId;
+    const hero = heroes.find((entry) => entry.id === heroId);
+    if (!hero) {
+      return;
+    }
+
+    heroMap[rosterHeroId] = {
+      ...normalizeHeroState(hero, parsedHeroState),
+      heroId,
+    };
+  });
+
+  // Find a valid selected roster hero ID from the saved state.
+  let selectedHeroId = "";
+  if (typeof input.selectedHeroId === "string" && heroMap[input.selectedHeroId]) {
+    selectedHeroId = input.selectedHeroId;
+  } else if (typeof input.selectedHeroId === "number") {
+    const legacySelectedHeroId = input.selectedHeroId;
+    const matchingLegacySelection = Object.entries(heroMap).find(([, heroState]) => heroState.heroId === legacySelectedHeroId);
+    if (matchingLegacySelection) {
+      selectedHeroId = matchingLegacySelection[0];
+    }
+  }
+  if (!selectedHeroId) {
+    selectedHeroId = Object.keys(heroMap)[0] ?? "";
+  }
+
   return {
     version: 1,
-    selectedHeroId: heroes.some((hero) => hero.id === input.selectedHeroId)
-      ? input.selectedHeroId
-      : fallback.selectedHeroId,
-    selectedQuestId: quests.some((quest) => quest.id === input.selectedQuestId)
-      ? input.selectedQuestId
-      : fallback.selectedQuestId,
-    heroes: Object.fromEntries(
-      heroes.map((hero) => [hero.id, normalizeHeroState(hero, input.heroes?.[hero.id])]),
-    ),
+    gameMode,
+    selectedHeroId,
+    heroes: heroMap,
   };
 }
 
-function loadSavedState(heroes: Hero[], quests: Quest[]): SaveState {
-  const fallback = createDefaultSaveState(heroes, quests);
+function loadSavedState(gameMode: string, heroes: Hero[]): SaveState {
+  const fallback = createDefaultSaveState(gameMode);
 
   if (typeof window === "undefined") {
     return fallback;
   }
 
-  const raw = window.localStorage.getItem(STORAGE_KEY);
+  const raw = window.localStorage.getItem(getStorageKey(gameMode));
   if (!raw) {
     return fallback;
   }
 
   try {
-    return normalizeSaveState(heroes, quests, JSON.parse(raw) as SaveState);
+    return normalizeSaveState(gameMode, heroes, JSON.parse(raw) as SaveState);
   } catch {
     return fallback;
   }
@@ -631,7 +762,7 @@ function normalizeSearchValue(value: string) {
     .trim();
 }
 
-function toPublicAssetPath(path: string | null) {
+function toPublicAssetPath(path: string | null | undefined) {
   return path ? encodeURI(path) : null;
 }
 
@@ -686,38 +817,38 @@ function getBisSetupLabel(buildLabel: string) {
 
 export default function HeroRosterSimulator({
   heroes,
-  quests,
   gearItems,
   bisEntries,
   prefixOptions,
   suffixOptions,
+  gameMode,
+  onBackClick,
 }: HeroRosterSimulatorProps) {
   const itemButtonRefs = useRef<Record<number, HTMLButtonElement | null>>({});
-  const [saveState, setSaveState] = useState<SaveState>(() => createDefaultSaveState(heroes, quests));
+  const [saveState, setSaveState] = useState<SaveState>(() => createDefaultSaveState(gameMode));
   const [isHydrated, setIsHydrated] = useState(false);
-  const [activeSlotByHero, setActiveSlotByHero] = useState<Record<number, GearSlot>>({});
+  const [activeSlotByHero, setActiveSlotByHero] = useState<Record<string, GearSlot>>({});
   const [tierFilterBySlot, setTierFilterBySlot] = useState<Partial<Record<GearSlot, number>>>({});
   const [sortDirectionBySlot, setSortDirectionBySlot] = useState<Partial<Record<GearSlot, "asc" | "desc">>>({});
-  const [missingHeroIcons, setMissingHeroIcons] = useState<Record<number, boolean>>({});
-  const [missingQuestIcons, setMissingQuestIcons] = useState<Record<number, boolean>>({});
-  const [missingEnemyIcons, setMissingEnemyIcons] = useState<Record<number, boolean>>({});
+  const [missingHeroIcons, setMissingHeroIcons] = useState<Record<string, boolean>>({});
   const [missingItemImages, setMissingItemImages] = useState<Record<string, boolean>>({});
   const [slotDraftBySlot, setSlotDraftBySlot] = useState<Partial<Record<GearSlot, SlotEditDraft>>>({});
   const [isSlotEditorOpen, setIsSlotEditorOpen] = useState(false);
+  const [isAddHeroModalOpen, setIsAddHeroModalOpen] = useState(false);
 
   useEffect(() => {
     // eslint-disable-next-line react-hooks/set-state-in-effect
-    setSaveState(loadSavedState(heroes, quests));
+    setSaveState(loadSavedState(gameMode, heroes));
     setIsHydrated(true);
-  }, [heroes, quests]);
+  }, [heroes, gameMode]);
 
   useEffect(() => {
     if (!isHydrated || typeof window === "undefined") {
       return;
     }
 
-    window.localStorage.setItem(STORAGE_KEY, JSON.stringify(saveState));
-  }, [isHydrated, saveState]);
+    window.localStorage.setItem(getStorageKey(gameMode), JSON.stringify(saveState));
+  }, [isHydrated, saveState, gameMode]);
 
   useEffect(() => {
     if (!isSlotEditorOpen || typeof window === "undefined") {
@@ -734,23 +865,30 @@ export default function HeroRosterSimulator({
     return () => window.removeEventListener("keydown", onKeyDown);
   }, [isSlotEditorOpen]);
 
-  const selectedHero = useMemo(
-    () => heroes.find((hero) => hero.id === saveState.selectedHeroId) ?? heroes[0] ?? null,
-    [heroes, saveState.selectedHeroId],
+  const selectedRosterHeroId = saveState.selectedHeroId;
+
+  const selectedRosterHero = useMemo(
+    () => (selectedRosterHeroId ? saveState.heroes[selectedRosterHeroId] ?? null : null),
+    [saveState.heroes, selectedRosterHeroId],
   );
 
-  const selectedQuest = useMemo(
-    () => quests.find((quest) => quest.id === saveState.selectedQuestId) ?? quests[0] ?? null,
-    [quests, saveState.selectedQuestId],
-  );
+  const selectedHero = useMemo(() => {
+    if (!selectedRosterHero) {
+      return null;
+    }
+    return heroes.find((hero) => hero.id === selectedRosterHero.heroId) ?? null;
+  }, [heroes, selectedRosterHero]);
 
   const selectedHeroState = useMemo(() => {
+    if (selectedRosterHero) {
+      return selectedRosterHero;
+    }
     if (!selectedHero) {
       return createHeroSaveState();
     }
 
-    return saveState.heroes[selectedHero.id] ?? createHeroSaveState(selectedHero);
-  }, [saveState.heroes, selectedHero]);
+    return createHeroSaveState(selectedHero);
+  }, [selectedHero, selectedRosterHero]);
 
   const selectedHeroScaling = useMemo(() => {
     if (!selectedHero) {
@@ -846,7 +984,7 @@ export default function HeroRosterSimulator({
     return total;
   }, [prefixOptions, selectedGear, selectedHeroState.equipped, suffixOptions]);
 
-  const computedHeroStats = useMemo(() => {
+  const calculatedHeroStats = useMemo<HeroComputedStats | null>(() => {
     if (!selectedHero) {
       return null;
     }
@@ -866,9 +1004,13 @@ export default function HeroRosterSimulator({
     const baseDef = heroBaseStats.def + totalGearBonus.def;
     const baseMdef = heroBaseStats.mdef + totalGearBonus.mdef;
     const baseAcc = heroBaseStats.acc + totalGearBonus.acc + totalDex * heroScaling.dexToAcc;
+    const maxHp = applyPercent(baseHp, totalGearBonus.hpPct);
+
+    const baseAp = getBaseApForLevel(heroLevel) + totalGearBonus.ap;
 
     return {
-      hp: applyPercent(baseHp, totalGearBonus.hpPct),
+      hp: maxHp,
+      currentHp: maxHp,
       atk: applyPercent(baseAtk, totalGearBonus.atkPct),
       matk: applyPercent(baseMatk, totalGearBonus.matkPct),
       def: applyPercent(baseDef, totalGearBonus.defPct),
@@ -880,16 +1022,32 @@ export default function HeroRosterSimulator({
       dex: totalDex,
       lck: totalGearBonus.lck,
       speed: totalGearBonus.speed,
-      ap: totalGearBonus.ap,
+      ap: baseAp,
       exp: totalGearBonus.exp,
-      critDmg: totalGearBonus.critDmg,
+      critDmg: 200 + totalGearBonus.critDmg,
       gold: totalGearBonus.gold,
     };
   }, [selectedHero, selectedHeroState.attributes, selectedHeroState.level, selectedHeroState.prestige, totalGearBonus]);
 
-  const selectedHeroId = selectedHero?.id ?? heroes[0]?.id ?? 0;
-  const selectedQuestId = selectedQuest?.id ?? quests[0]?.id ?? 0;
-  const activeSlot = activeSlotByHero[selectedHeroId] ?? "weapon";
+  const computedHeroStats = useMemo<HeroComputedStats | null>(() => {
+    if (!calculatedHeroStats) {
+      return null;
+    }
+
+    const next = { ...calculatedHeroStats };
+    HERO_STAT_FIELDS.forEach(([key]) => {
+      const overrideValue = selectedHeroState.statOverrides[key];
+      if (typeof overrideValue === "number" && Number.isFinite(overrideValue)) {
+        next[key] = overrideValue;
+      }
+    });
+
+    return next;
+  }, [calculatedHeroStats, selectedHeroState.statOverrides]);
+
+  const hasStatOverrides = Object.keys(selectedHeroState.statOverrides).length > 0;
+
+  const activeSlot = activeSlotByHero[selectedRosterHeroId] ?? "weapon";
   const activeTierFilter = tierFilterBySlot[activeSlot];
   const activeSortDirection = sortDirectionBySlot[activeSlot] ?? "asc";
   const currentSlotState = selectedHeroState.equipped[activeSlot];
@@ -912,9 +1070,7 @@ export default function HeroRosterSimulator({
     activeSlotDraft.suffixId !== currentSlotState.suffixId ||
     activeSlotDraft.prestige !== currentSlotState.prestige ||
     JSON.stringify(activeSlotDraft.exactBonus ?? {}) !== JSON.stringify(currentSlotState.exactBonus ?? {});
-  const heroIconMissing = Boolean(selectedHero && missingHeroIcons[selectedHeroId]);
-  const questIconMissing = Boolean(selectedQuest && missingQuestIcons[selectedQuestId]);
-  const enemyIconMissing = Boolean(selectedQuest && missingEnemyIcons[selectedQuestId]);
+  const heroIconMissing = Boolean(selectedHero && selectedRosterHeroId && missingHeroIcons[selectedRosterHeroId]);
 
   const activeSlotTierOptions = useMemo(
     () => Array.from(new Set(gearBySlot[activeSlot].map((item) => item.tier))).sort((a, b) => a - b),
@@ -937,7 +1093,7 @@ export default function HeroRosterSimulator({
     });
   }, [activeSortDirection, filteredGearItemsForActiveSlot]);
 
-  const bisTier = activeTierFilter ?? selectedQuest?.region;
+  const bisTier = activeTierFilter;
 
   const bisEntriesForActiveSlot = useMemo(() => {
     if (!selectedHero || typeof bisTier !== "number") {
@@ -1040,32 +1196,28 @@ export default function HeroRosterSimulator({
   };
 
   const updateHeroState = (updater: (current: HeroSaveState) => HeroSaveState) => {
-    if (!selectedHero) {
+    if (!selectedRosterHeroId) {
       return;
     }
 
     setSaveState((current) => {
-      const heroId = selectedHero.id;
-      const heroState = current.heroes[heroId] ?? createHeroSaveState(selectedHero);
+      const heroState = current.heroes[selectedRosterHeroId];
+      if (!heroState) {
+        return current;
+      }
+
+      const nextHeroState = updater(heroState);
       return {
         ...current,
         heroes: {
           ...current.heroes,
-          [heroId]: updater(heroState),
+          [selectedRosterHeroId]: {
+            ...nextHeroState,
+            heroId: heroState.heroId,
+          },
         },
       };
     });
-  };
-
-  const handleAttributeChange = (key: keyof HeroAttributes, value: string) => {
-    const parsed = Number(value);
-    updateHeroState((current) => ({
-      ...current,
-      attributes: {
-        ...current.attributes,
-        [key]: Number.isFinite(parsed) ? parsed : 0,
-      },
-    }));
   };
 
   const handleHeroLevelChange = (value: string) => {
@@ -1083,19 +1235,37 @@ export default function HeroRosterSimulator({
     }));
   };
 
-  const handleSelectHero = (heroId: number) => {
+  const handleStatOverrideChange = (key: keyof HeroComputedStats, value: string) => {
+    updateHeroState((current) => {
+      const nextOverrides = { ...current.statOverrides };
+
+      if (value.trim() === "") {
+        delete nextOverrides[key];
+      } else {
+        const parsed = Number(value);
+        nextOverrides[key] = Number.isFinite(parsed) ? parsed : 0;
+      }
+
+      return {
+        ...current,
+        statOverrides: nextOverrides,
+      };
+    });
+  };
+
+  const clearStatOverrides = () => {
+    updateHeroState((current) => ({
+      ...current,
+      statOverrides: {},
+    }));
+  };
+
+  const handleSelectHero = (rosterHeroId: string) => {
     setSlotDraftBySlot({});
     setIsSlotEditorOpen(false);
     setSaveState((current) => ({
       ...current,
-      selectedHeroId: heroId,
-    }));
-  };
-
-  const handleSelectQuest = (questId: number) => {
-    setSaveState((current) => ({
-      ...current,
-      selectedQuestId: questId,
+      selectedHeroId: rosterHeroId,
     }));
   };
 
@@ -1294,9 +1464,12 @@ export default function HeroRosterSimulator({
   };
 
   const handleSetActiveSlot = (slot: GearSlot) => {
+    if (!selectedRosterHeroId) {
+      return;
+    }
     setActiveSlotByHero((current) => ({
       ...current,
-      [selectedHeroId]: slot,
+      [selectedRosterHeroId]: slot,
     }));
   };
 
@@ -1306,13 +1479,27 @@ export default function HeroRosterSimulator({
   };
 
   const resetLocalSave = () => {
-    const fresh = createDefaultSaveState(heroes, quests);
+    const fresh = createDefaultSaveState(gameMode);
     setSaveState(fresh);
     setActiveSlotByHero({});
     if (typeof window !== "undefined") {
-      window.localStorage.removeItem(STORAGE_KEY);
+      window.localStorage.removeItem(getStorageKey(gameMode));
     }
   };
+
+  const hasBardInRoster = useMemo(
+    () =>
+      Object.values(saveState.heroes).some((heroState) => {
+        const hero = heroes.find((entry) => entry.id === heroState.heroId);
+        return hero?.name.toLowerCase() === "bard";
+      }),
+    [heroes, saveState.heroes],
+  );
+
+  const addableHeroes = useMemo(
+    () => heroes.filter((hero) => hero.name.toLowerCase() !== "bard" || !hasBardInRoster),
+    [hasBardInRoster, heroes],
+  );
 
   return (
     <main className="mx-auto flex min-h-screen w-full max-w-7xl flex-col gap-6 px-4 py-6 sm:px-6 lg:px-8">
@@ -1331,6 +1518,12 @@ export default function HeroRosterSimulator({
         </div>
 
         <div className="flex flex-wrap items-center gap-2">
+          {onBackClick && (
+            <Button type="button" variant="outline" onClick={onBackClick}>
+              <ChevronLeft className="mr-2 h-4 w-4" />
+              Back to Game Modes
+            </Button>
+          )}
           <Button type="button" variant="outline" onClick={resetLocalSave}>
             <RotateCcw className="mr-2 h-4 w-4" />
             Reset local saves
@@ -1338,7 +1531,7 @@ export default function HeroRosterSimulator({
         </div>
       </header>
 
-      <section className="grid gap-6 lg:grid-cols-[280px_minmax(0,1fr)]">
+      <section className="grid gap-6 lg:grid-cols-[340px_minmax(0,1fr)]">
         <Card className="h-fit lg:sticky lg:top-6">
           <CardHeader>
             <CardTitle>Heroes</CardTitle>
@@ -1346,53 +1539,123 @@ export default function HeroRosterSimulator({
           </CardHeader>
           <CardContent className="space-y-3">
             <div className="max-h-[calc(100vh-14rem)] space-y-2 overflow-y-auto pr-1 lg:max-h-[calc(100vh-10rem)]">
-              {heroes.map((hero) => {
-                const heroState = saveState.heroes[hero.id] ?? createHeroSaveState(hero);
-                const rosterStats = computeHeroStatsForRoster(hero, heroState, gearItems, prefixOptions, suffixOptions);
-                const isSelected = hero.id === selectedHeroId;
-                const healthPercent = 100;
+              {Object.keys(saveState.heroes).length === 0 ? (
+                <div className="rounded-lg border border-dashed border-input bg-muted/20 p-4 text-center text-sm text-muted-foreground">
+                  <p>No heroes added yet</p>
+                  <p className="mt-1 text-xs">Click the &quot;Add Hero&quot; button below to get started</p>
+                </div>
+              ) : (
+                Object.entries(saveState.heroes).map(([rosterHeroId, heroState]) => {
+                  const hero = heroes.find((h) => h.id === heroState.heroId);
+                  if (!hero) return null;
 
-                return (
-                  <button
-                    key={hero.id}
-                    type="button"
-                    onClick={() => handleSelectHero(hero.id)}
-                    className={cn(
-                      "w-full rounded-xl border px-3 py-3 text-left transition",
-                      isSelected
-                        ? "border-primary bg-primary/10 shadow-sm"
-                        : "border-input bg-background hover:border-primary/40 hover:bg-muted/30",
-                    )}
-                  >
-                    <div className="flex items-center gap-3">
-                      <div className="flex h-12 w-12 shrink-0 items-center justify-center overflow-hidden rounded-lg border border-input bg-muted">
-                        <Image
-                          src={getHeroIconPath(hero)}
-                          alt={`${hero.name} icon`}
-                          width={48}
-                          height={48}
-                          className="h-full w-full object-cover"
-                        />
-                      </div>
-                      <div className="min-w-0 flex-1">
-                        <div className="flex items-center justify-between gap-2">
-                          <p className="truncate font-semibold">{hero.name}</p>
-                          <span className="text-xs text-muted-foreground">Lv {heroState.level} • P{heroState.prestige}</span>
-                        </div>
-                        <p className="text-xs text-muted-foreground">HP {formatValue(rosterStats.hp)}</p>
-                        <div className="mt-2 h-2 overflow-hidden rounded-full bg-muted">
-                          <div
-                            className="h-full rounded-full bg-emerald-500"
-                            style={{ width: `${healthPercent}%` }}
+                  const rosterStats = computeHeroStatsForRoster(hero, heroState, gearItems, prefixOptions, suffixOptions);
+                  const isSelected = rosterHeroId === selectedRosterHeroId;
+                  return (
+                    <div
+                      key={rosterHeroId}
+                      className={cn(
+                        "flex items-start gap-2 rounded-xl border px-3 py-2.5 transition",
+                        isSelected
+                          ? "border-primary bg-primary/10 shadow-sm"
+                          : "border-input bg-background hover:border-primary/40 hover:bg-muted/30",
+                      )}
+                    >
+                      <button
+                        type="button"
+                        onClick={() => handleSelectHero(rosterHeroId)}
+                        className="flex min-w-0 flex-1 items-start gap-3 text-left"
+                      >
+                        <div className="mt-0.5 flex h-12 w-12 shrink-0 items-center justify-center overflow-hidden rounded-lg border border-input bg-muted">
+                          <Image
+                            src={getHeroIconPath(hero)}
+                            alt={`${hero.name} icon`}
+                            width={48}
+                            height={48}
+                            className="h-full w-full object-cover"
                           />
                         </div>
-                      </div>
-                      <ChevronRight className={cn("h-4 w-4 shrink-0", isSelected ? "text-primary" : "text-muted-foreground")} />
+                         <div className="min-w-0 flex-1 space-y-1.5">
+                           <div className="flex items-baseline justify-between gap-2">
+                             <p className="truncate text-sm font-semibold" title={hero.name}>{hero.name}</p>
+                             <p className="shrink-0 text-xs text-muted-foreground">Lv {heroState.level} · P{heroState.prestige}</p>
+                           </div>
+                           {/* HP bar */}
+                           <div className="space-y-0.5">
+                             <div className="flex items-center justify-between text-[11px]">
+                               <span className="text-muted-foreground">HP</span>
+                               <span className="font-medium tabular-nums">{formatValue(rosterStats.currentHp)}/{formatValue(rosterStats.hp)}</span>
+                             </div>
+                             <div className="h-1.5 w-full overflow-hidden rounded-full bg-muted">
+                               <div
+                                 className="h-full rounded-full bg-green-500 transition-all"
+                                 style={{ width: `${Math.min(100, rosterStats.hp > 0 ? (rosterStats.currentHp / rosterStats.hp) * 100 : 0)}%` }}
+                               />
+                             </div>
+                           </div>
+                           {/* Key stats as flowing label/value pairs */}
+                           <div className="flex flex-wrap gap-x-3 gap-y-0.5 text-[11px]">
+                             {([
+                               ["ATK", rosterStats.atk],
+                               ["M.Atk", rosterStats.matk],
+                               ["Acc", rosterStats.acc],
+                               ["Def", rosterStats.def],
+                               ["M.Def", rosterStats.mdef],
+                               ["AP", rosterStats.ap],
+                             ] as [string, number][]).map(([label, val]) => (
+                               <span key={label} className="whitespace-nowrap">
+                                 <span className="text-muted-foreground">{label}</span>
+                                 {" "}
+                                 <span className="font-medium tabular-nums">{formatValue(val)}</span>
+                               </span>
+                             ))}
+                           </div>
+                         </div>
+                        <ChevronRight className={cn("mt-1 h-4 w-4 shrink-0", isSelected ? "text-primary" : "text-muted-foreground")} />
+                      </button>
+                      <Button
+                        type="button"
+                        variant="ghost"
+                        size="icon"
+                        className="h-8 w-8 shrink-0 text-destructive hover:bg-destructive/10 hover:text-destructive"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          // Remove hero from roster
+                          setSaveState((current) => {
+                            const nextHeroes = { ...current.heroes };
+                            delete nextHeroes[rosterHeroId];
+
+                            // If this was the selected hero, select another roster entry or clear selection.
+                            let nextSelectedHeroId = current.selectedHeroId;
+                            if (nextSelectedHeroId === rosterHeroId) {
+                              const remainingHeroIds = Object.keys(nextHeroes);
+                              nextSelectedHeroId = remainingHeroIds[0] ?? "";
+                            }
+
+                            return {
+                              ...current,
+                              heroes: nextHeroes,
+                              selectedHeroId: nextSelectedHeroId,
+                            };
+                          });
+                        }}
+                      >
+                        <Trash2 className="h-4 w-4" />
+                      </Button>
                     </div>
-                  </button>
-                );
-              })}
+                  );
+                })
+              )}
             </div>
+            <Button
+              type="button"
+              variant="outline"
+              className="w-full"
+              onClick={() => setIsAddHeroModalOpen(true)}
+            >
+              <Plus className="mr-2 h-4 w-4" />
+              Add Hero
+            </Button>
           </CardContent>
         </Card>
 
@@ -1419,7 +1682,7 @@ export default function HeroRosterSimulator({
                             onError={() =>
                               setMissingHeroIcons((current) => ({
                                 ...current,
-                                [selectedHeroId]: true,
+                                [selectedRosterHeroId]: true,
                               }))
                             }
                           />
@@ -1447,98 +1710,82 @@ export default function HeroRosterSimulator({
                       Changes save automatically to this PC.
                     </div>
                   </div>
+                  <div className="grid gap-3">
+                    <div className="rounded-2xl border border-input bg-muted/20 p-3">
+                      <div className="grid gap-2 md:grid-cols-[1fr_190px_1fr] md:items-center">
+                        <div className="grid grid-cols-1 gap-1.5">
+                          {(["weapon", "head", "body"] as GearSlot[]).map((slot) => {
+                            const itemImagePath = toPublicAssetPath(selectedGear[slot]?.imagePath);
+                            const imageMissing = itemImagePath ? Boolean(missingItemImages[itemImagePath]) : false;
 
-                  <div className="grid gap-4">
-                    <div className="rounded-2xl border border-input bg-muted/20 p-4">
-                      <div className="grid gap-3 md:grid-cols-[1fr_220px_1fr] md:items-center">
-                        <div className="grid grid-cols-1 gap-2">
-                          {(["weapon", "head", "body"] as GearSlot[]).map((slot) => (
-                            <SlotButton
-                              key={slot}
-                              slot={slot}
-                              active={activeSlot === slot}
-                              item={selectedGear[slot]}
-                              quality={selectedHeroState.equipped[slot].quality}
-                              onClick={() => handleOpenSlotEditor(slot)}
-                            />
-                          ))}
+                            return (
+                              <SlotButton
+                                key={slot}
+                                slot={slot}
+                                active={activeSlot === slot}
+                                item={selectedGear[slot]}
+                                itemImagePath={itemImagePath}
+                                imageMissing={imageMissing}
+                                quality={selectedHeroState.equipped[slot].quality}
+                                onClick={() => handleOpenSlotEditor(slot)}
+                              />
+                            );
+                          })}
                         </div>
 
-                        <div className="space-y-3">
-                          <div className="flex items-center justify-between">
-                            <Button
-                              type="button"
-                              variant="ghost"
-                              size="icon"
-                              onClick={() => {
-                                const currentIndex = GEAR_SLOT_ORDER.indexOf(activeSlot);
-                                const nextIndex = (currentIndex - 1 + GEAR_SLOT_ORDER.length) % GEAR_SLOT_ORDER.length;
-                                handleSetActiveSlot(GEAR_SLOT_ORDER[nextIndex]);
-                              }}
-                            >
-                              <ChevronLeft className="h-4 w-4" />
-                            </Button>
-                            <p className="text-sm font-semibold">{GEAR_SLOT_LABELS[activeSlot]}</p>
-                            <Button
-                              type="button"
-                              variant="ghost"
-                              size="icon"
-                              onClick={() => {
-                                const currentIndex = GEAR_SLOT_ORDER.indexOf(activeSlot);
-                                const nextIndex = (currentIndex + 1) % GEAR_SLOT_ORDER.length;
-                                handleSetActiveSlot(GEAR_SLOT_ORDER[nextIndex]);
-                              }}
-                            >
-                              <ChevronRight className="h-4 w-4" />
-                            </Button>
-                          </div>
-
-                          <div className="rounded-2xl border border-input bg-card p-4 shadow-sm">
-                            <div className="flex min-h-56 items-center justify-center">
-                              <div className="flex w-full max-w-xs flex-col items-center gap-3">
-                                <div className="flex h-32 w-32 items-center justify-center rounded-full border border-dashed border-input bg-muted/40">
-                                  {!heroIconMissing ? (
-                                    <Image
-                                      src={selectedHero.iconPath}
-                                      alt={`${selectedHero.name} icon`}
-                                      width={112}
-                                      height={112}
-                                      className="h-28 w-28 object-contain"
-                                      onError={() =>
-                                        setMissingHeroIcons((current) => ({
-                                          ...current,
-                                          [selectedHeroId]: true,
-                                        }))
-                                      }
-                                    />
-                                  ) : (
-                                    <div className="text-center text-xs text-muted-foreground sm:text-sm">
-                                      Hero art
-                                      <br />
-                                      unavailable
-                                    </div>
-                                  )}
-                                </div>
-                                <div className="rounded-lg border border-input bg-muted/20 px-3 py-2 text-center text-xs text-muted-foreground">
-                                  Editing {GEAR_SLOT_LABELS[activeSlot]} ({activeSlotDraft.quality}, {PRESTIGE_LABELS[activeSlotDraft.prestige]})
-                                  {hasActiveDraftChanges ? " • Unsaved changes" : ""}
-                                </div>
+                        <div className="rounded-2xl border border-input bg-card p-2.5">
+                          <div className="flex min-h-44 items-center justify-center">
+                            <div className="w-full space-y-2 text-center">
+                              <p className="text-sm font-semibold">{GEAR_SLOT_LABELS[activeSlot]}</p>
+                              <div className="mx-auto flex h-32 w-32 items-center justify-center overflow-hidden rounded-full border border-input bg-muted/40 shadow-inner">
+                                {!heroIconMissing ? (
+                                  <Image
+                                    src={selectedHero.iconPath}
+                                    alt={`${selectedHero.name} icon`}
+                                    width={120}
+                                    height={120}
+                                    className="h-28 w-28 object-contain"
+                                    onError={() =>
+                                      setMissingHeroIcons((current) => ({
+                                        ...current,
+                                        [selectedRosterHeroId]: true,
+                                      }))
+                                    }
+                                  />
+                                ) : (
+                                  <div className="text-center text-xs text-muted-foreground sm:text-sm">
+                                    Hero art
+                                    <br />
+                                    unavailable
+                                  </div>
+                                )}
                               </div>
+                              <p className="rounded-md border border-input bg-muted/20 px-2 py-1 text-[11px] text-muted-foreground">
+                                Editing {GEAR_SLOT_LABELS[activeSlot]} ({activeSlotDraft.quality}, {PRESTIGE_LABELS[activeSlotDraft.prestige]})
+                                {hasActiveDraftChanges ? " • Unsaved" : ""}
+                              </p>
                             </div>
                           </div>
                         </div>
 
-                        <div className="grid grid-cols-1 gap-2">
-                          {(["hands", "feet", "trinket"] as GearSlot[]).map((slot) => (
-                            <SlotButton
-                              key={slot}
-                              slot={slot}
-                              active={activeSlot === slot}
-                              item={selectedGear[slot]}
-                              quality={selectedHeroState.equipped[slot].quality}
-                              onClick={() => handleOpenSlotEditor(slot)}
-                            />
-                          ))}
+                        <div className="grid grid-cols-1 gap-1.5">
+                          {(["hands", "feet", "trinket"] as GearSlot[]).map((slot) => {
+                            const itemImagePath = toPublicAssetPath(selectedGear[slot]?.imagePath);
+                            const imageMissing = itemImagePath ? Boolean(missingItemImages[itemImagePath]) : false;
+
+                            return (
+                              <SlotButton
+                                key={slot}
+                                slot={slot}
+                                active={activeSlot === slot}
+                                item={selectedGear[slot]}
+                                itemImagePath={itemImagePath}
+                                imageMissing={imageMissing}
+                                quality={selectedHeroState.equipped[slot].quality}
+                                onClick={() => handleOpenSlotEditor(slot)}
+                              />
+                            );
+                          })}
                         </div>
                       </div>
                     </div>
@@ -1579,68 +1826,32 @@ export default function HeroRosterSimulator({
                       </CardContent>
                     </Card>
 
-                    <Card>
-                      <CardHeader>
-                        <CardTitle>Attributes</CardTitle>
-                        <CardDescription>
-                          Attributes are saved per hero and feed the same scaling rules as the simulator.
-                        </CardDescription>
+                    <Card className="md:col-span-2">
+                      <CardHeader className="flex flex-row items-start justify-between gap-3 space-y-0">
+                        <div>
+                          <CardTitle>Current Stats</CardTitle>
+                          <CardDescription>
+                            Edit any value directly. Overrides are display-only and do not recalculate derived scaling values.
+                          </CardDescription>
+                        </div>
+                        <Button type="button" variant="outline" size="sm" onClick={clearStatOverrides} disabled={!hasStatOverrides}>
+                          Reset to calculated
+                        </Button>
                       </CardHeader>
-                      <CardContent className="grid grid-cols-3 gap-3">
-                        <div className="space-y-2">
-                          <Label htmlFor="attr-str">STR</Label>
-                          <Input
-                            id="attr-str"
-                            type="number"
-                            value={selectedHeroState.attributes.str}
-                            onChange={(event) => handleAttributeChange("str", event.target.value)}
-                          />
-                        </div>
-                        <div className="space-y-2">
-                          <Label htmlFor="attr-int">INT</Label>
-                          <Input
-                            id="attr-int"
-                            type="number"
-                            value={selectedHeroState.attributes.int}
-                            onChange={(event) => handleAttributeChange("int", event.target.value)}
-                          />
-                        </div>
-                        <div className="space-y-2">
-                          <Label htmlFor="attr-dex">DEX</Label>
-                          <Input
-                            id="attr-dex"
-                            type="number"
-                            value={selectedHeroState.attributes.dex}
-                            onChange={(event) => handleAttributeChange("dex", event.target.value)}
-                          />
-                        </div>
-                      </CardContent>
-                    </Card>
-
-                    <Card>
-                      <CardHeader>
-                        <CardTitle>Current Stats</CardTitle>
-                        <CardDescription>Derived from base stats, attributes, and the current loadout.</CardDescription>
-                      </CardHeader>
-                      <CardContent className="grid grid-cols-2 gap-2">
+                      <CardContent className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
                         {computedHeroStats ? (
                           <>
-                            <StatLine label="HP" value={computedHeroStats.hp} />
-                            <StatLine label="ATK" value={computedHeroStats.atk} />
-                            <StatLine label="MATK" value={computedHeroStats.matk} />
-                            <StatLine label="DEF" value={computedHeroStats.def} />
-                            <StatLine label="MDEF" value={computedHeroStats.mdef} />
-                            <StatLine label="ACC" value={computedHeroStats.acc} />
-                            <StatLine label="CRIT" value={computedHeroStats.crit} />
-                            <StatLine label="STR" value={computedHeroStats.str} />
-                            <StatLine label="INT" value={computedHeroStats.int} />
-                            <StatLine label="DEX" value={computedHeroStats.dex} />
-                            <StatLine label="LUCK" value={computedHeroStats.lck} />
-                            <StatLine label="SPEED" value={computedHeroStats.speed} />
-                            <StatLine label="AP" value={computedHeroStats.ap} />
-                            <StatLine label="XP%" value={computedHeroStats.exp} />
-                            <StatLine label="CDMG%" value={computedHeroStats.critDmg} />
-                            <StatLine label="GOLD" value={computedHeroStats.gold} />
+                            {HERO_STAT_FIELDS.map(([key, label]) => (
+                              <div key={`current-${key}`} className="space-y-1.5">
+                                <Label htmlFor={`current-${key}`} className="text-xs text-muted-foreground">{label}</Label>
+                                <Input
+                                  id={`current-${key}`}
+                                  type="number"
+                                  value={selectedHeroState.statOverrides[key] ?? computedHeroStats[key]}
+                                  onChange={(event) => handleStatOverrideChange(key, event.target.value)}
+                                />
+                              </div>
+                            ))}
                           </>
                         ) : (
                           <p className="text-sm text-red-600">No hero data found.</p>
@@ -1655,119 +1866,7 @@ export default function HeroRosterSimulator({
             </CardContent>
           </Card>
 
-          <div className="grid gap-6 md:grid-cols-2">
-            <Card>
-              <CardHeader>
-                <CardTitle>Quest Enemy</CardTitle>
-                <CardDescription>Kept here so the simulator still has a target to compare against.</CardDescription>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <div className="space-y-2">
-                  <Label htmlFor="quest-select">Quest</Label>
-                  <Select
-                    value={String(selectedQuestId)}
-                    onValueChange={(value) => handleSelectQuest(Number(value))}
-                  >
-                    <SelectTrigger id="quest-select">
-                      <SelectValue placeholder="Select a quest" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      {quests.map((quest) => (
-                        <SelectItem key={quest.id} value={String(quest.id)}>
-                          {quest.name} (Lv {quest.levelReq})
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
-                </div>
-
-                {selectedQuest ? (
-                  <>
-                    <div className="flex gap-3">
-                      {!questIconMissing && selectedQuest.iconPath ? (
-                        <Image
-                          src={selectedQuest.iconPath}
-                          alt={`${selectedQuest.name} quest icon`}
-                          width={64}
-                          height={64}
-                          onError={() =>
-                            setMissingQuestIcons((current) => ({
-                              ...current,
-                              [selectedQuestId]: true,
-                            }))
-                          }
-                        />
-                      ) : null}
-                      {!enemyIconMissing && selectedQuest.enemyImagePath ? (
-                        <Image
-                          src={selectedQuest.enemyImagePath}
-                          alt={`${selectedQuest.name} enemy portrait`}
-                          width={64}
-                          height={64}
-                          onError={() =>
-                            setMissingEnemyIcons((current) => ({
-                              ...current,
-                              [selectedQuestId]: true,
-                            }))
-                          }
-                        />
-                      ) : null}
-                      {questIconMissing && enemyIconMissing ? (
-                        <div className="text-sm text-muted-foreground">Enemy image unavailable</div>
-                      ) : null}
-                    </div>
-                    <div>
-                      <p className="text-sm font-semibold">{selectedQuest.name}</p>
-                      <p className="text-xs text-muted-foreground">
-                        {selectedQuest.title} • Lv {selectedQuest.levelReq} • Region {selectedQuest.region}
-                      </p>
-                    </div>
-                    <div className="grid grid-cols-2 gap-2">
-                      <StatLine label="HP" value={selectedQuest.enemy.hp} />
-                      <StatLine label="ATK" value={selectedQuest.enemy.atk} />
-                      <StatLine label="MATK" value={selectedQuest.enemy.matk} />
-                      <StatLine label="DEF" value={selectedQuest.enemy.def} />
-                      <StatLine label="MDEF" value={selectedQuest.enemy.mdef} />
-                      <StatLine label="EVA" value={selectedQuest.enemy.eva} />
-                    </div>
-                  </>
-                ) : (
-                  <p className="text-sm text-red-600">No quest data found.</p>
-                )}
-              </CardContent>
-            </Card>
-
-            <Card>
-              <CardHeader>
-                <CardTitle>Saved Loadout</CardTitle>
-                <CardDescription>What is currently stored for the selected hero.</CardDescription>
-              </CardHeader>
-              <CardContent className="space-y-3">
-                <div className="rounded-lg border border-input bg-background px-3 py-2 text-xs text-muted-foreground">
-                  Hero progression: Lv {selectedHeroState.level} • P{selectedHeroState.prestige}
-                </div>
-                <div className="grid grid-cols-2 gap-2 text-xs text-muted-foreground">
-                  {GEAR_SLOT_ORDER.map((slot) => {
-                    const item = selectedGear[slot];
-                    const { quality, prestige, prefixId, suffixId, exactBonus } = selectedHeroState.equipped[slot];
-                    return (
-                      <div key={slot} className="rounded-lg border border-input bg-background px-3 py-2">
-                        <p className="font-medium text-foreground">{GEAR_SLOT_LABELS[slot]}</p>
-                        <p>{item ? `${item.name} (${quality}, ${PRESTIGE_LABELS[prestige]})` : `None (${quality}, ${PRESTIGE_LABELS[prestige]})`}</p>
-                        <p>
-                          {prefixOptions.find((entry) => entry.id === prefixId)?.name ?? "No prefix"} • {suffixOptions.find((entry) => entry.id === suffixId)?.name ?? "No suffix"}
-                        </p>
-                        {hasExactBonusOverrides(exactBonus) ? <p>Uses exact stat overrides</p> : null}
-                      </div>
-                    );
-                  })}
-                </div>
-                <p className="text-xs text-muted-foreground">
-                  If you want to clear everything and start over, use the reset button in the header.
-                </p>
-              </CardContent>
-            </Card>
-          </div>
+          {/* Quest Enemy and Saved Loadout sections removed - will be implemented in simulator later */}
         </div>
       </section>
 
@@ -2156,6 +2255,71 @@ export default function HeroRosterSimulator({
         </div>
       ) : null}
 
+      {isAddHeroModalOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/55 p-4" onClick={() => setIsAddHeroModalOpen(false)}>
+          <Card
+            className="flex max-h-[90vh] w-full max-w-2xl flex-col"
+            onClick={(event) => event.stopPropagation()}
+          >
+            <CardHeader className="border-b border-input pb-4">
+              <div className="flex items-start justify-between gap-3">
+                <div>
+                  <CardTitle>Add Hero</CardTitle>
+                  <CardDescription>Select a hero class to add to your roster.</CardDescription>
+                </div>
+                <Button type="button" variant="ghost" size="icon" onClick={() => setIsAddHeroModalOpen(false)}>
+                  <X className="h-4 w-4" />
+                </Button>
+              </div>
+            </CardHeader>
+
+            <CardContent className="flex-1 overflow-y-auto p-4">
+              <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+                {addableHeroes.map((hero) => (
+                    <button
+                      key={`add-${hero.id}`}
+                      type="button"
+                      onClick={() => {
+                        const rosterHeroId = createRosterHeroId(hero.id);
+                        // Create initial save state for the new hero and select it
+                        setSaveState((current) => ({
+                          ...current,
+                          heroes: {
+                            ...current.heroes,
+                            [rosterHeroId]: createRosterHeroSaveState(hero),
+                          },
+                          selectedHeroId: rosterHeroId,
+                        }));
+                        setIsAddHeroModalOpen(false);
+                      }}
+                      className="flex flex-col items-center gap-3 rounded-xl border border-input bg-background px-4 py-4 text-center transition hover:border-primary/40 hover:bg-muted/30"
+                    >
+                      <div className="flex h-16 w-16 items-center justify-center overflow-hidden rounded-lg border border-input bg-muted">
+                        <Image
+                          src={getHeroIconPath(hero)}
+                          alt={`${hero.name} icon`}
+                          width={64}
+                          height={64}
+                          className="h-full w-full object-cover"
+                        />
+                      </div>
+                      <div className="min-w-0 flex-1">
+                        <p className="font-semibold">{hero.name}</p>
+                        <p className="text-xs text-muted-foreground">Base Level {hero.level}</p>
+                      </div>
+                    </button>
+                ))}
+              </div>
+              {addableHeroes.length === 0 && (
+                <div className="rounded-lg border border-dashed border-input bg-muted/20 p-4 text-center text-sm text-muted-foreground">
+                  <p>No hero classes available to add</p>
+                </div>
+              )}
+            </CardContent>
+          </Card>
+        </div>
+      )}
+
     </main>
   );
 }
@@ -2225,14 +2389,31 @@ function computeHeroStatsForRoster(
   const baseDef = heroBaseStats.def + totalGearBonus.def;
   const baseMdef = heroBaseStats.mdef + totalGearBonus.mdef;
   const baseAcc = heroBaseStats.acc + totalGearBonus.acc + totalDex * heroScaling.dexToAcc;
+  const maxHp = applyPercent(baseHp, totalGearBonus.hpPct);
+  const baseAp = getBaseApForLevel(heroState.level) + totalGearBonus.ap;
 
-  return {
-    hp: applyPercent(baseHp, totalGearBonus.hpPct),
+  const computed = {
+    hp: maxHp,
+    currentHp: maxHp,
     atk: applyPercent(baseAtk, totalGearBonus.atkPct),
     matk: applyPercent(baseMatk, totalGearBonus.matkPct),
     def: applyPercent(baseDef, totalGearBonus.defPct),
     mdef: applyPercent(baseMdef, totalGearBonus.mdefPct),
     acc: applyPercent(baseAcc, totalGearBonus.accPct),
+    ap: baseAp,
+    crit: heroBaseStats.crit + totalGearBonus.crit,
+  };
+
+  return {
+    hp: typeof heroState.statOverrides.hp === "number" ? heroState.statOverrides.hp : computed.hp,
+    currentHp: typeof heroState.statOverrides.currentHp === "number" ? heroState.statOverrides.currentHp : computed.currentHp,
+    atk: typeof heroState.statOverrides.atk === "number" ? heroState.statOverrides.atk : computed.atk,
+    matk: typeof heroState.statOverrides.matk === "number" ? heroState.statOverrides.matk : computed.matk,
+    def: typeof heroState.statOverrides.def === "number" ? heroState.statOverrides.def : computed.def,
+    mdef: typeof heroState.statOverrides.mdef === "number" ? heroState.statOverrides.mdef : computed.mdef,
+    acc: typeof heroState.statOverrides.acc === "number" ? heroState.statOverrides.acc : computed.acc,
+    ap: typeof heroState.statOverrides.ap === "number" ? heroState.statOverrides.ap : computed.ap,
+    crit: computed.crit,
   };
 }
 
@@ -2240,12 +2421,16 @@ function SlotButton({
   slot,
   active,
   item,
+  itemImagePath,
+  imageMissing,
   quality,
   onClick,
 }: {
   slot: GearSlot;
   active: boolean;
   item: GearItem | null;
+  itemImagePath: string | null;
+  imageMissing: boolean;
   quality: GearQuality;
   onClick: () => void;
 }) {
@@ -2254,28 +2439,40 @@ function SlotButton({
       type="button"
       onClick={onClick}
       className={cn(
-        "flex items-center justify-between rounded-xl border px-3 py-2 text-left text-sm transition",
+        "flex items-center gap-2 rounded-lg border px-2.5 py-1.5 text-left text-sm transition",
         active ? "border-primary bg-primary/10" : "border-input bg-background hover:border-primary/40 hover:bg-muted/30",
       )}
     >
-      <div className="min-w-0">
-        <p className="font-medium">{GEAR_SLOT_LABELS[slot]}</p>
-        <p className="truncate text-xs text-muted-foreground">{item ? item.name : "None"}</p>
+      <div className="flex h-11 w-11 shrink-0 items-center justify-center overflow-hidden rounded-md border border-input bg-muted">
+        {itemImagePath && !imageMissing ? (
+          <Image
+            src={itemImagePath}
+            alt={item ? item.name : `${GEAR_SLOT_LABELS[slot]} item`}
+            width={44}
+            height={44}
+            className="h-full w-full object-contain p-1"
+          />
+        ) : (
+          <span className="text-[10px] text-muted-foreground">No image</span>
+        )}
       </div>
-      <span className="ml-2 shrink-0 text-xs text-muted-foreground">{quality}</span>
+
+      <div className="min-w-0 flex-1">
+        <div className="flex items-center justify-between gap-2">
+          <p className="text-[13px] font-semibold leading-none">{GEAR_SLOT_LABELS[slot]}</p>
+          <div className="flex h-5 w-5 shrink-0 items-center justify-center overflow-hidden rounded border border-input bg-muted">
+            <Image
+              src={QUALITY_ICON_PATHS[quality]}
+              alt={`${quality} quality`}
+              width={20}
+              height={20}
+              className="h-full w-full object-contain"
+            />
+          </div>
+        </div>
+        <p className="mt-0.5 truncate text-[12px] text-muted-foreground">{item ? item.name : "None"}</p>
+      </div>
     </button>
   );
 }
-
-function StatLine({ label, value }: { label: string; value: number }) {
-  return (
-    <div className="flex items-center justify-between rounded-lg border border-input bg-background px-2 py-1.5 text-sm">
-      <span className="font-medium text-foreground">{label}</span>
-      <span className="text-muted-foreground">{formatValue(value)}</span>
-    </div>
-  );
-}
-
-
-
 

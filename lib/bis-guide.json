@@ -1,10 +1,10 @@
 {
   "metadata": {
     "source": "Jackal's Merchant BIS Guide.xlsx",
-    "parsedAt": "2026-06-16T18:09:17.130Z",
+    "parsedAt": "2026-06-18T15:29:09.095Z",
     "heroCount": 9,
     "buildCount": 116,
-    "entryCount": 634,
+    "entryCount": 616,
     "ignoredSheets": [
       "Notes",
       "Endgame Calcs"
@@ -274,9 +274,9 @@
               "items": []
             },
             "feet": {
-              "raw": "Magnataur's Greaves",
+              "raw": "Magnotaur's Sabatons",
               "items": [
-                "Magnataur's Greaves"
+                "Magnotaur's Sabatons"
               ]
             },
             "trinket": {
@@ -389,7 +389,7 @@
           "rowIndex": 9,
           "slots": {
             "weapon": {
-              "raw": "Fate's Decree/Oni's Dec.",
+              "raw": "Fate's Decree / Oni's Dec.",
               "items": [
                 "Fate's Decree",
                 "Oni's Dec."
@@ -420,7 +420,7 @@
               ]
             },
             "trinket": {
-              "raw": "Shadow Earring/Molten Core",
+              "raw": "Shadow Earring / Molten Core",
               "items": [
                 "Shadow Earring",
                 "Molten Core"
@@ -460,16 +460,16 @@
               ]
             },
             "hands": {
-              "raw": "BD Gauntlets/Galam's Gauntlets",
+              "raw": "Black Dragon Gauntlets / Galam's Gauntlets",
               "items": [
-                "BD Gauntlets",
+                "Black Dragon Gauntlets",
                 "Galam's Gauntlets"
               ]
             },
             "feet": {
-              "raw": "BD Sabatons",
+              "raw": "Black Dragon Sabatons",
               "items": [
-                "BD Sabatons"
+                "Black Dragon Sabatons"
               ]
             },
             "trinket": {
@@ -559,10 +559,10 @@
               ]
             },
             "hands": {
-              "raw": "ED/BD Gauntlets",
+              "raw": "Elder Demon Gauntlets / Black Dragon Gauntlets",
               "items": [
-                "ED",
-                "BD Gauntlets"
+                "Elder Demon Gauntlets",
+                "Black Dragon Gauntlets"
               ]
             },
             "feet": {
@@ -611,7 +611,7 @@
               ]
             },
             "hands": {
-              "raw": "Eternity Fists/Oblivion Shackles",
+              "raw": "Eternity Fists / Oblivion Shackles",
               "items": [
                 "Eternity Fists",
                 "Oblivion Shackles"
@@ -663,9 +663,9 @@
               ]
             },
             "hands": {
-              "raw": "BD Gauntlets",
+              "raw": "Black Dragon Gauntlets",
               "items": [
-                "BD Gauntlets"
+                "Black Dragon Gauntlets"
               ]
             },
             "feet": {
@@ -675,10 +675,10 @@
               ]
             },
             "trinket": {
-              "raw": "Titan Soul/RotM",
+              "raw": "Titan Soul / Ring of the Mountain",
               "items": [
                 "Titan Soul",
-                "RotM"
+                "Ring of the Mountain"
               ]
             },
             "potionPrefix": {
@@ -800,21 +800,21 @@
               ]
             },
             "body": {
-              "raw": "Murlock Robe",
+              "raw": "Murlok Robe",
               "items": [
-                "Murlock Robe"
+                "Murlok Robe"
               ]
             },
             "hands": {
-              "raw": "Murlock Mitts",
+              "raw": "Murlok Mitts",
               "items": [
-                "Murlock Mitts"
+                "Murlok Mitts"
               ]
             },
             "feet": {
-              "raw": "Murlock Crakows",
+              "raw": "Murlok Crakows",
               "items": [
-                "Murlock Crakows"
+                "Murlok Crakows"
               ]
             },
             "trinket": {
@@ -837,9 +837,9 @@
           "rowIndex": 4,
           "slots": {
             "weapon": {
-              "raw": "Tidal Scepter",
+              "raw": "Tidal Sceptre",
               "items": [
-                "Tidal Scepter"
+                "Tidal Sceptre"
               ]
             },
             "head": {
@@ -929,9 +929,9 @@
           "rowIndex": 6,
           "slots": {
             "weapon": {
-              "raw": "Tidal Scepter",
+              "raw": "Tidal Sceptre",
               "items": [
-                "Tidal Scepter"
+                "Tidal Sceptre"
               ]
             },
             "head": {
@@ -949,9 +949,9 @@
               ]
             },
             "feet": {
-              "raw": "Kirin's Sun-ate",
+              "raw": "Kirin's Sune-Ate",
               "items": [
-                "Kirin's Sun-ate"
+                "Kirin's Sune-Ate"
               ]
             },
             "trinket": {
@@ -1041,13 +1041,13 @@
               ]
             },
             "feet": {
-              "raw": "Kirin's Sun-ate",
+              "raw": "Kirin's Sune-Ate",
               "items": [
-                "Kirin's Sun-ate"
+                "Kirin's Sune-Ate"
               ]
             },
             "trinket": {
-              "raw": "Tidal Boon/Hel's Earring",
+              "raw": "Tidal Boon / Hel's Earring",
               "items": [
                 "Tidal Boon",
                 "Hel's Earring"
@@ -1130,16 +1130,12 @@
               ]
             },
             "body": {
-              "raw": "-||-",
-              "items": [
-                "-||-"
-              ]
+              "raw": "",
+              "items": []
             },
             "hands": {
-              "raw": "-||-",
-              "items": [
-                "-||-"
-              ]
+              "raw": "",
+              "items": []
             },
             "feet": {
               "raw": "Elder Demon Crakows",
@@ -1169,10 +1165,8 @@
           "rowIndex": 11,
           "slots": {
             "weapon": {
-              "raw": "-||-",
-              "items": [
-                "-||-"
-              ]
+              "raw": "",
+              "items": []
             },
             "head": {
               "raw": "Hellfire Diadem",
@@ -1181,16 +1175,12 @@
               ]
             },
             "body": {
-              "raw": "-||-",
-              "items": [
-                "-||-"
-              ]
+              "raw": "",
+              "items": []
             },
             "hands": {
-              "raw": "-||-",
-              "items": [
-                "-||-"
-              ]
+              "raw": "",
+              "items": []
             },
             "feet": {
               "raw": "Cragus' Crakows",
@@ -1220,7 +1210,7 @@
           "rowIndex": 12,
           "slots": {
             "weapon": {
-              "raw": "Archanos/Eternal Wrath",
+              "raw": "Archanos / Eternal Wrath",
               "items": [
                 "Archanos",
                 "Eternal Wrath"
@@ -1233,7 +1223,7 @@
               ]
             },
             "body": {
-              "raw": "Eternal Frost/Ouroboros' Robe",
+              "raw": "Eternal Frost / Ouroboros' Robe",
               "items": [
                 "Eternal Frost",
                 "Ouroboros' Robe"
@@ -1291,10 +1281,8 @@
               ]
             },
             "hands": {
-              "raw": "-||-",
-              "items": [
-                "-||-"
-              ]
+              "raw": "",
+              "items": []
             },
             "feet": {
               "raw": "Cragus' Crakows",
@@ -1529,9 +1517,9 @@
               ]
             },
             "feet": {
-              "raw": "Fighter's Greaves",
+              "raw": "Fighters Greaves",
               "items": [
-                "Fighter's Greaves"
+                "Fighters Greaves"
               ]
             },
             "trinket": {
@@ -1574,9 +1562,9 @@
               ]
             },
             "feet": {
-              "raw": "Kirin's Sun-ate",
+              "raw": "Kirin's Sune-Ate",
               "items": [
-                "Kirin's Sun-ate"
+                "Kirin's Sune-Ate"
               ]
             },
             "trinket": {
@@ -1711,17 +1699,17 @@
               ]
             },
             "feet": {
-              "raw": "Elder Demon Boots/Fafnir's Boots",
+              "raw": "Elder Demon Boots / Fafnir's Boots",
               "items": [
                 "Elder Demon Boots",
                 "Fafnir's Boots"
               ]
             },
             "trinket": {
-              "raw": "Khan's Medallion/Cerb. Pendant",
+              "raw": "Khan's Medallion / Cerberus' Pendant",
               "items": [
                 "Khan's Medallion",
-                "Cerb. Pendant"
+                "Cerberus' Pendant"
               ]
             },
             "potionPrefix": {
@@ -1764,9 +1752,9 @@
               ]
             },
             "trinket": {
-              "raw": "Galam's Ring",
+              "raw": "Furious Ring",
               "items": [
-                "Galam's Ring"
+                "Furious Ring"
               ]
             },
             "potionPrefix": {
@@ -1891,10 +1879,10 @@
               ]
             },
             "body": {
-              "raw": "Iceborn Cloak/Archon's Chest",
+              "raw": "Iceborn Cloak / Archon's Embrace",
               "items": [
                 "Iceborn Cloak",
-                "Archon's Chest"
+                "Archon's Embrace"
               ]
             },
             "hands": {
@@ -2230,9 +2218,9 @@
               ]
             },
             "feet": {
-              "raw": "Kirin's Sun-ate",
+              "raw": "Kirin's Sune-Ate",
               "items": [
-                "Kirin's Sun-ate"
+                "Kirin's Sune-Ate"
               ]
             },
             "trinket": {
@@ -2420,9 +2408,9 @@
               ]
             },
             "trinket": {
-              "raw": "Galam's Ring",
+              "raw": "Furious Ring",
               "items": [
-                "Galam's Ring"
+                "Furious Ring"
               ]
             },
             "potionPrefix": {
@@ -2482,9 +2470,9 @@
           "rowIndex": 12,
           "slots": {
             "weapon": {
-              "raw": "Arthos' Axe",
+              "raw": "Athos' Axe",
               "items": [
-                "Arthos' Axe"
+                "Athos' Axe"
               ]
             },
             "head": {
@@ -2533,9 +2521,9 @@
           "rowIndex": 13,
           "slots": {
             "weapon": {
-              "raw": "Gungrir",
+              "raw": "Gungnir",
               "items": [
-                "Gungrir"
+                "Gungnir"
               ]
             },
             "head": {
@@ -2620,7 +2608,7 @@
               ]
             },
             "potionPrefix": {
-              "raw": "acc pLvl (5x brisk, 1x savvy/master's))",
+              "raw": "acc pLvl (5x brisk, 1x savvy / master's))",
               "items": [
                 "acc pLvl (5x brisk, 1x savvy",
                 "master's))"
@@ -2666,7 +2654,7 @@
               ]
             },
             "trinket": {
-              "raw": "Ring of the Mountain/Molten Core",
+              "raw": "Ring of the Mountain / Molten Core",
               "items": [
                 "Ring of the Mountain",
                 "Molten Core"
@@ -2791,21 +2779,21 @@
               ]
             },
             "body": {
-              "raw": "Murlock Robe",
+              "raw": "Murlok Robe",
               "items": [
-                "Murlock Robe"
+                "Murlok Robe"
               ]
             },
             "hands": {
-              "raw": "Murlock Mitts",
+              "raw": "Murlok Mitts",
               "items": [
-                "Murlock Mitts"
+                "Murlok Mitts"
               ]
             },
             "feet": {
-              "raw": "Murlock Crakows",
+              "raw": "Murlok Crakows",
               "items": [
-                "Murlock Crakows"
+                "Murlok Crakows"
               ]
             },
             "trinket": {
@@ -2828,9 +2816,9 @@
           "rowIndex": 4,
           "slots": {
             "weapon": {
-              "raw": "Tidal Scepter",
+              "raw": "Tidal Sceptre",
               "items": [
-                "Tidal Scepter"
+                "Tidal Sceptre"
               ]
             },
             "head": {
@@ -2920,9 +2908,9 @@
           "rowIndex": 6,
           "slots": {
             "weapon": {
-              "raw": "Tidal Scepter",
+              "raw": "Tidal Sceptre",
               "items": [
-                "Tidal Scepter"
+                "Tidal Sceptre"
               ]
             },
             "head": {
@@ -2940,9 +2928,9 @@
               ]
             },
             "feet": {
-              "raw": "Kirin's Sun-ate",
+              "raw": "Kirin's Sune-Ate",
               "items": [
-                "Kirin's Sun-ate"
+                "Kirin's Sune-Ate"
               ]
             },
             "trinket": {
@@ -3032,9 +3020,9 @@
               ]
             },
             "feet": {
-              "raw": "Kirin's Sun-ate",
+              "raw": "Kirin's Sune-Ate",
               "items": [
-                "Kirin's Sun-ate"
+                "Kirin's Sune-Ate"
               ]
             },
             "trinket": {
@@ -3495,15 +3483,15 @@
               ]
             },
             "feet": {
-              "raw": "Kirin's Sun-ate",
+              "raw": "Kirin's Sune-Ate",
               "items": [
-                "Kirin's Sun-ate"
+                "Kirin's Sune-Ate"
               ]
             },
             "trinket": {
-              "raw": "Khan Medallion",
+              "raw": "Khan's Medallion",
               "items": [
-                "Khan Medallion"
+                "Khan's Medallion"
               ]
             },
             "potionPrefix": {
@@ -3891,9 +3879,9 @@
               ]
             },
             "trinket": {
-              "raw": "Khan Medallion",
+              "raw": "Khan's Medallion",
               "items": [
-                "Khan Medallion"
+                "Khan's Medallion"
               ]
             },
             "potionPrefix": {
@@ -4033,9 +4021,9 @@
               ]
             },
             "trinket": {
-              "raw": "Highpriest's Necklace",
+              "raw": "Priest's Necklace",
               "items": [
-                "Highpriest's Necklace"
+                "Priest's Necklace"
               ]
             },
             "potionPrefix": {
@@ -4142,7 +4130,7 @@
           "rowIndex": 6,
           "slots": {
             "weapon": {
-              "raw": "Khan's Bulawa/Titan Breaker",
+              "raw": "Khan's Bulawa / Titan Breaker",
               "items": [
                 "Khan's Bulawa",
                 "Titan Breaker"
@@ -4214,9 +4202,9 @@
               ]
             },
             "trinket": {
-              "raw": "Undead Trinket",
+              "raw": "Undead Pendant",
               "items": [
-                "Undead Trinket"
+                "Undead Pendant"
               ]
             },
             "potionPrefix": {
@@ -4400,9 +4388,9 @@
               "items": []
             },
             "trinket": {
-              "raw": "Protector's Gift",
+              "raw": "Gift of the Forest",
               "items": [
-                "Protector's Gift"
+                "Gift of the Forest"
               ]
             },
             "potionPrefix": {
@@ -4525,9 +4513,9 @@
               ]
             },
             "body": {
-              "raw": "Murlock Robe",
+              "raw": "Murlok Robe",
               "items": [
-                "Murlock Robe"
+                "Murlok Robe"
               ]
             },
             "hands": {
@@ -4543,10 +4531,10 @@
               ]
             },
             "trinket": {
-              "raw": "Basamus' / Highpriest's",
+              "raw": "Basamus' Ring / Priest's Necklace",
               "items": [
-                "Basamus'",
-                "Highpriest's"
+                "Basamus' Ring",
+                "Priest's Necklace"
               ]
             },
             "potionPrefix": {
@@ -4673,9 +4661,9 @@
               ]
             },
             "feet": {
-              "raw": "Kirin's Sun-ate",
+              "raw": "Kirin's Sune-Ate",
               "items": [
-                "Kirin's Sun-ate"
+                "Kirin's Sune-Ate"
               ]
             },
             "trinket": {
@@ -4769,9 +4757,9 @@
               ]
             },
             "feet": {
-              "raw": "Kirin's Sun-ate",
+              "raw": "Kirin's Sune-Ate",
               "items": [
-                "Kirin's Sun-ate"
+                "Kirin's Sune-Ate"
               ]
             },
             "trinket": {
@@ -4843,10 +4831,8 @@
           "rowIndex": 10,
           "slots": {
             "weapon": {
-              "raw": "-||-",
-              "items": [
-                "-||-"
-              ]
+              "raw": "",
+              "items": []
             },
             "head": {
               "raw": "Hellfire Diadem",
@@ -4855,10 +4841,8 @@
               ]
             },
             "body": {
-              "raw": "-||-",
-              "items": [
-                "-||-"
-              ]
+              "raw": "",
+              "items": []
             },
             "hands": {
               "raw": "Galam's Gauntlets",
@@ -4873,9 +4857,9 @@
               ]
             },
             "trinket": {
-              "raw": "Galam's Ring",
+              "raw": "Furious Ring",
               "items": [
-                "Galam's Ring"
+                "Furious Ring"
               ]
             },
             "potionPrefix": {
@@ -4900,28 +4884,20 @@
               ]
             },
             "head": {
-              "raw": "-||-",
-              "items": [
-                "-||-"
-              ]
+              "raw": "",
+              "items": []
             },
             "body": {
-              "raw": "-||-",
-              "items": [
-                "-||-"
-              ]
+              "raw": "",
+              "items": []
             },
             "hands": {
-              "raw": "-||-",
-              "items": [
-                "-||-"
-              ]
+              "raw": "",
+              "items": []
             },
             "feet": {
-              "raw": "-||-",
-              "items": [
-                "-||-"
-              ]
+              "raw": "",
+              "items": []
             },
             "trinket": {
               "raw": "Beastly Earring",
@@ -4957,21 +4933,19 @@
               ]
             },
             "body": {
-              "raw": "-||-",
-              "items": [
-                "-||-"
-              ]
+              "raw": "",
+              "items": []
             },
             "hands": {
-              "raw": "ED Mitts",
+              "raw": "Elder Demon Mitts",
               "items": [
-                "ED Mitts"
+                "Elder Demon Mitts"
               ]
             },
             "feet": {
-              "raw": "ED Crakows",
+              "raw": "Elder Demon Crakows",
               "items": [
-                "ED Crakows"
+                "Elder Demon Crakows"
               ]
             },
             "trinket": {
@@ -4996,28 +4970,20 @@
           "rowIndex": 13,
           "slots": {
             "weapon": {
-              "raw": "-||-",
-              "items": [
-                "-||-"
-              ]
+              "raw": "",
+              "items": []
             },
             "head": {
-              "raw": "-||-",
-              "items": [
-                "-||-"
-              ]
+              "raw": "",
+              "items": []
             },
             "body": {
-              "raw": "-||-",
-              "items": [
-                "-||-"
-              ]
+              "raw": "",
+              "items": []
             },
             "hands": {
-              "raw": "-||-",
-              "items": [
-                "-||-"
-              ]
+              "raw": "",
+              "items": []
             },
             "feet": {
               "raw": "Cragus' Crakows",
@@ -5026,10 +4992,8 @@
               ]
             },
             "trinket": {
-              "raw": "-||-",
-              "items": [
-                "-||-"
-              ]
+              "raw": "",
+              "items": []
             },
             "potionPrefix": {
               "raw": "matk plvl",
@@ -5098,7 +5062,7 @@
           "rowIndex": 15,
           "slots": {
             "weapon": {
-              "raw": "Eternal Wrath/Archanos",
+              "raw": "Eternal Wrath / Archanos",
               "items": [
                 "Eternal Wrath",
                 "Archanos"
@@ -5129,7 +5093,7 @@
               ]
             },
             "trinket": {
-              "raw": "Arctic Howl/Pendant of Eternity",
+              "raw": "Arctic Howl / Pendant of Eternity",
               "items": [
                 "Arctic Howl",
                 "Pendant of Eternity"
@@ -5342,9 +5306,9 @@
           "rowIndex": 4,
           "slots": {
             "weapon": {
-              "raw": "Levi's Bite",
+              "raw": "Leviathan's Bite",
               "items": [
-                "Levi's Bite"
+                "Leviathan's Bite"
               ]
             },
             "head": {
@@ -5434,9 +5398,9 @@
           "rowIndex": 6,
           "slots": {
             "weapon": {
-              "raw": "Levi's Bite",
+              "raw": "Leviathan's Bite",
               "items": [
-                "Levi's Bite"
+                "Leviathan's Bite"
               ]
             },
             "head": {
@@ -5454,15 +5418,15 @@
               ]
             },
             "feet": {
-              "raw": "Kirin's Sun-ate",
+              "raw": "Kirin's Sune-Ate",
               "items": [
-                "Kirin's Sun-ate"
+                "Kirin's Sune-Ate"
               ]
             },
             "trinket": {
-              "raw": "Khan Medallion",
+              "raw": "Khan's Medallion",
               "items": [
-                "Khan Medallion"
+                "Khan's Medallion"
               ]
             },
             "potionPrefix": {
@@ -5528,9 +5492,9 @@
           "rowIndex": 8,
           "slots": {
             "weapon": {
-              "raw": "Levi's Bite",
+              "raw": "Leviathan's Bite",
               "items": [
-                "Levi's Bite"
+                "Leviathan's Bite"
               ]
             },
             "head": {
@@ -5548,15 +5512,15 @@
               ]
             },
             "feet": {
-              "raw": "Kirin's Sun-ate",
+              "raw": "Kirin's Sune-Ate",
               "items": [
-                "Kirin's Sun-ate"
+                "Kirin's Sune-Ate"
               ]
             },
             "trinket": {
-              "raw": "Khan Medallion",
+              "raw": "Khan's Medallion",
               "items": [
-                "Khan Medallion"
+                "Khan's Medallion"
               ]
             },
             "potionPrefix": {
@@ -5591,9 +5555,9 @@
               ]
             },
             "hands": {
-              "raw": "ED Gauntlets",
+              "raw": "Elder Demon Gauntlets",
               "items": [
-                "ED Gauntlets"
+                "Elder Demon Gauntlets"
               ]
             },
             "feet": {
@@ -5603,10 +5567,10 @@
               ]
             },
             "trinket": {
-              "raw": "Seastone Pendant/Khan Medallion",
+              "raw": "Seastone Pendant / Khan's Medallion",
               "items": [
                 "Seastone Pendant",
-                "Khan Medallion"
+                "Khan's Medallion"
               ]
             },
             "potionPrefix": {
@@ -5653,9 +5617,9 @@
               ]
             },
             "trinket": {
-              "raw": "Khan Medallion",
+              "raw": "Khan's Medallion",
               "items": [
-                "Khan Medallion"
+                "Khan's Medallion"
               ]
             },
             "potionPrefix": {
@@ -5704,13 +5668,13 @@
               ]
             },
             "trinket": {
-              "raw": "Khan Medallion",
+              "raw": "Khan's Medallion",
               "items": [
-                "Khan Medallion"
+                "Khan's Medallion"
               ]
             },
             "potionPrefix": {
-              "raw": "mAtt/Att/Acc plvl (1x Savvy, 5x Fortunate)",
+              "raw": "mAtt / Att / Acc plvl (1x Savvy, 5x Fortunate)",
               "items": [
                 "mAtt",
                 "Att",
@@ -5757,9 +5721,9 @@
               ]
             },
             "trinket": {
-              "raw": "Aeon Heart",
+              "raw": "Heart of Aeon",
               "items": [
-                "Aeon Heart"
+                "Heart of Aeon"
               ]
             },
             "potionPrefix": {
@@ -5778,7 +5742,7 @@
           "rowIndex": 13,
           "slots": {
             "weapon": {
-              "raw": "Frostmourne/Archanos",
+              "raw": "Frostmourne / Archanos",
               "items": [
                 "Frostmourne",
                 "Archanos"
@@ -5809,9 +5773,9 @@
               ]
             },
             "trinket": {
-              "raw": "Khan Medallion",
+              "raw": "Khan's Medallion",
               "items": [
-                "Khan Medallion"
+                "Khan's Medallion"
               ]
             },
             "potionPrefix": {
@@ -5842,10 +5806,10 @@
               ]
             },
             "body": {
-              "raw": "Iceborn Cloak/Archon's Chest",
+              "raw": "Iceborn Cloak / Archon's Embrace",
               "items": [
                 "Iceborn Cloak",
-                "Archon's Chest"
+                "Archon's Embrace"
               ]
             },
             "hands": {
@@ -5861,9 +5825,9 @@
               ]
             },
             "trinket": {
-              "raw": "Khan Medallion",
+              "raw": "Khan's Medallion",
               "items": [
-                "Khan Medallion"
+                "Khan's Medallion"
               ]
             },
             "potionPrefix": {
@@ -5912,9 +5876,9 @@
               ]
             },
             "trinket": {
-              "raw": "Khan Medallion",
+              "raw": "Khan's Medallion",
               "items": [
-                "Khan Medallion"
+                "Khan's Medallion"
               ]
             },
             "potionPrefix": {
@@ -5963,9 +5927,9 @@
               ]
             },
             "trinket": {
-              "raw": "Khan Medallion",
+              "raw": "Khan's Medallion",
               "items": [
-                "Khan Medallion"
+                "Khan's Medallion"
               ]
             },
             "potionPrefix": {
@@ -6286,9 +6250,9 @@
       "buildLabel": "Tier 3 Weeklies",
       "tier": 3,
       "slot": "feet",
-      "raw": "Magnataur's Greaves",
+      "raw": "Magnotaur's Sabatons",
       "items": [
-        "Magnataur's Greaves"
+        "Magnotaur's Sabatons"
       ],
       "rowIndex": 6
     },
@@ -6416,7 +6380,7 @@
       "buildLabel": "Tier 5 (F2P)",
       "tier": 5,
       "slot": "weapon",
-      "raw": "Fate's Decree/Oni's Dec.",
+      "raw": "Fate's Decree / Oni's Dec.",
       "items": [
         "Fate's Decree",
         "Oni's Dec."
@@ -6482,7 +6446,7 @@
       "buildLabel": "Tier 5 (F2P)",
       "tier": 5,
       "slot": "trinket",
-      "raw": "Shadow Earring/Molten Core",
+      "raw": "Shadow Earring / Molten Core",
       "items": [
         "Shadow Earring",
         "Molten Core"
@@ -6548,9 +6512,9 @@
       "buildLabel": "Tier 5 Optimal",
       "tier": 5,
       "slot": "hands",
-      "raw": "BD Gauntlets/Galam's Gauntlets",
+      "raw": "Black Dragon Gauntlets / Galam's Gauntlets",
       "items": [
-        "BD Gauntlets",
+        "Black Dragon Gauntlets",
         "Galam's Gauntlets"
       ],
       "rowIndex": 10
@@ -6562,9 +6526,9 @@
       "buildLabel": "Tier 5 Optimal",
       "tier": 5,
       "slot": "feet",
-      "raw": "BD Sabatons",
+      "raw": "Black Dragon Sabatons",
       "items": [
-        "BD Sabatons"
+        "Black Dragon Sabatons"
       ],
       "rowIndex": 10
     },
@@ -6705,10 +6669,10 @@
       "buildLabel": "Tier 6 Final",
       "tier": 6,
       "slot": "hands",
-      "raw": "ED/BD Gauntlets",
+      "raw": "Elder Demon Gauntlets / Black Dragon Gauntlets",
       "items": [
-        "ED",
-        "BD Gauntlets"
+        "Elder Demon Gauntlets",
+        "Black Dragon Gauntlets"
       ],
       "rowIndex": 12
     },
@@ -6797,7 +6761,7 @@
       "buildLabel": "Tier 6 Damage(alt)",
       "tier": 6,
       "slot": "hands",
-      "raw": "Eternity Fists/Oblivion Shackles",
+      "raw": "Eternity Fists / Oblivion Shackles",
       "items": [
         "Eternity Fists",
         "Oblivion Shackles"
@@ -6889,9 +6853,9 @@
       "buildLabel": "Tier 6 HP(alt)",
       "tier": 6,
       "slot": "hands",
-      "raw": "BD Gauntlets",
+      "raw": "Black Dragon Gauntlets",
       "items": [
-        "BD Gauntlets"
+        "Black Dragon Gauntlets"
       ],
       "rowIndex": 14
     },
@@ -6915,10 +6879,10 @@
       "buildLabel": "Tier 6 HP(alt)",
       "tier": 6,
       "slot": "trinket",
-      "raw": "Titan Soul/RotM",
+      "raw": "Titan Soul / Ring of the Mountain",
       "items": [
         "Titan Soul",
-        "RotM"
+        "Ring of the Mountain"
       ],
       "rowIndex": 14
     },
@@ -7046,9 +7010,9 @@
       "buildLabel": "Tier 2",
       "tier": 2,
       "slot": "body",
-      "raw": "Murlock Robe",
+      "raw": "Murlok Robe",
       "items": [
-        "Murlock Robe"
+        "Murlok Robe"
       ],
       "rowIndex": 3
     },
@@ -7059,9 +7023,9 @@
       "buildLabel": "Tier 2",
       "tier": 2,
       "slot": "hands",
-      "raw": "Murlock Mitts",
+      "raw": "Murlok Mitts",
       "items": [
-        "Murlock Mitts"
+        "Murlok Mitts"
       ],
       "rowIndex": 3
     },
@@ -7072,9 +7036,9 @@
       "buildLabel": "Tier 2",
       "tier": 2,
       "slot": "feet",
-      "raw": "Murlock Crakows",
+      "raw": "Murlok Crakows",
       "items": [
-        "Murlock Crakows"
+        "Murlok Crakows"
       ],
       "rowIndex": 3
     },
@@ -7098,9 +7062,9 @@
       "buildLabel": "Tier 2 Weeklies",
       "tier": 2,
       "slot": "weapon",
-      "raw": "Tidal Scepter",
+      "raw": "Tidal Sceptre",
       "items": [
-        "Tidal Scepter"
+        "Tidal Sceptre"
       ],
       "rowIndex": 4
     },
@@ -7215,9 +7179,9 @@
       "buildLabel": "Tier 3 Weeklies",
       "tier": 3,
       "slot": "weapon",
-      "raw": "Tidal Scepter",
+      "raw": "Tidal Sceptre",
       "items": [
-        "Tidal Scepter"
+        "Tidal Sceptre"
       ],
       "rowIndex": 6
     },
@@ -7241,9 +7205,9 @@
       "buildLabel": "Tier 3 Weeklies",
       "tier": 3,
       "slot": "feet",
-      "raw": "Kirin's Sun-ate",
+      "raw": "Kirin's Sune-Ate",
       "items": [
-        "Kirin's Sun-ate"
+        "Kirin's Sune-Ate"
       ],
       "rowIndex": 6
     },
@@ -7358,9 +7322,9 @@
       "buildLabel": "Tier 4 Weeklies",
       "tier": 4,
       "slot": "feet",
-      "raw": "Kirin's Sun-ate",
+      "raw": "Kirin's Sune-Ate",
       "items": [
-        "Kirin's Sun-ate"
+        "Kirin's Sune-Ate"
       ],
       "rowIndex": 8
     },
@@ -7371,7 +7335,7 @@
       "buildLabel": "Tier 4 Weeklies",
       "tier": 4,
       "slot": "trinket",
-      "raw": "Tidal Boon/Hel's Earring",
+      "raw": "Tidal Boon / Hel's Earring",
       "items": [
         "Tidal Boon",
         "Hel's Earring"
@@ -7496,32 +7460,6 @@
       "rowIndex": 10
     },
     {
-      "id": "mage-tier-5-mattack-body",
-      "hero": "Mage",
-      "buildId": "mage-tier-5-mattack",
-      "buildLabel": "Tier 5 - mAttack",
-      "tier": 5,
-      "slot": "body",
-      "raw": "-||-",
-      "items": [
-        "-||-"
-      ],
-      "rowIndex": 10
-    },
-    {
-      "id": "mage-tier-5-mattack-hands",
-      "hero": "Mage",
-      "buildId": "mage-tier-5-mattack",
-      "buildLabel": "Tier 5 - mAttack",
-      "tier": 5,
-      "slot": "hands",
-      "raw": "-||-",
-      "items": [
-        "-||-"
-      ],
-      "rowIndex": 10
-    },
-    {
       "id": "mage-tier-5-mattack-feet",
       "hero": "Mage",
       "buildId": "mage-tier-5-mattack",
@@ -7561,19 +7499,6 @@
       "rowIndex": 10
     },
     {
-      "id": "mage-tier-5-weekly-weapon",
-      "hero": "Mage",
-      "buildId": "mage-tier-5-weekly",
-      "buildLabel": "Tier 5 weekly",
-      "tier": 5,
-      "slot": "weapon",
-      "raw": "-||-",
-      "items": [
-        "-||-"
-      ],
-      "rowIndex": 11
-    },
-    {
       "id": "mage-tier-5-weekly-head",
       "hero": "Mage",
       "buildId": "mage-tier-5-weekly",
@@ -7583,32 +7508,6 @@
       "raw": "Hellfire Diadem",
       "items": [
         "Hellfire Diadem"
-      ],
-      "rowIndex": 11
-    },
-    {
-      "id": "mage-tier-5-weekly-body",
-      "hero": "Mage",
-      "buildId": "mage-tier-5-weekly",
-      "buildLabel": "Tier 5 weekly",
-      "tier": 5,
-      "slot": "body",
-      "raw": "-||-",
-      "items": [
-        "-||-"
-      ],
-      "rowIndex": 11
-    },
-    {
-      "id": "mage-tier-5-weekly-hands",
-      "hero": "Mage",
-      "buildId": "mage-tier-5-weekly",
-      "buildLabel": "Tier 5 weekly",
-      "tier": 5,
-      "slot": "hands",
-      "raw": "-||-",
-      "items": [
-        "-||-"
       ],
       "rowIndex": 11
     },
@@ -7658,7 +7557,7 @@
       "buildLabel": "Tier 6 - AM Crit",
       "tier": 6,
       "slot": "weapon",
-      "raw": "Archanos/Eternal Wrath",
+      "raw": "Archanos / Eternal Wrath",
       "items": [
         "Archanos",
         "Eternal Wrath"
@@ -7685,7 +7584,7 @@
       "buildLabel": "Tier 6 - AM Crit",
       "tier": 6,
       "slot": "body",
-      "raw": "Eternal Frost/Ouroboros' Robe",
+      "raw": "Eternal Frost / Ouroboros' Robe",
       "items": [
         "Eternal Frost",
         "Ouroboros' Robe"
@@ -7780,19 +7679,6 @@
       "raw": "Eternal Frost",
       "items": [
         "Eternal Frost"
-      ],
-      "rowIndex": 13
-    },
-    {
-      "id": "mage-tier-6-mattack-alt-hands",
-      "hero": "Mage",
-      "buildId": "mage-tier-6-mattack-alt",
-      "buildLabel": "Tier 6 mAttack(alt)*",
-      "tier": 6,
-      "slot": "hands",
-      "raw": "-||-",
-      "items": [
-        "-||-"
       ],
       "rowIndex": 13
     },
@@ -8076,9 +7962,9 @@
       "buildLabel": "Tier 3",
       "tier": 3,
       "slot": "feet",
-      "raw": "Fighter's Greaves",
+      "raw": "Fighters Greaves",
       "items": [
-        "Fighter's Greaves"
+        "Fighters Greaves"
       ],
       "rowIndex": 5
     },
@@ -8128,9 +8014,9 @@
       "buildLabel": "Tier 3 Weeklies",
       "tier": 3,
       "slot": "feet",
-      "raw": "Kirin's Sun-ate",
+      "raw": "Kirin's Sune-Ate",
       "items": [
-        "Kirin's Sun-ate"
+        "Kirin's Sune-Ate"
       ],
       "rowIndex": 6
     },
@@ -8297,7 +8183,7 @@
       "buildLabel": "Tier 5",
       "tier": 5,
       "slot": "feet",
-      "raw": "Elder Demon Boots/Fafnir's Boots",
+      "raw": "Elder Demon Boots / Fafnir's Boots",
       "items": [
         "Elder Demon Boots",
         "Fafnir's Boots"
@@ -8311,10 +8197,10 @@
       "buildLabel": "Tier 5",
       "tier": 5,
       "slot": "trinket",
-      "raw": "Khan's Medallion/Cerb. Pendant",
+      "raw": "Khan's Medallion / Cerberus' Pendant",
       "items": [
         "Khan's Medallion",
-        "Cerb. Pendant"
+        "Cerberus' Pendant"
       ],
       "rowIndex": 9
     },
@@ -8364,9 +8250,9 @@
       "buildLabel": "Tier 5 Weekly",
       "tier": 5,
       "slot": "trinket",
-      "raw": "Galam's Ring",
+      "raw": "Furious Ring",
       "items": [
-        "Galam's Ring"
+        "Furious Ring"
       ],
       "rowIndex": 10
     },
@@ -8546,10 +8432,10 @@
       "buildLabel": "Tier 6 True",
       "tier": 6,
       "slot": "body",
-      "raw": "Iceborn Cloak/Archon's Chest",
+      "raw": "Iceborn Cloak / Archon's Embrace",
       "items": [
         "Iceborn Cloak",
-        "Archon's Chest"
+        "Archon's Embrace"
       ],
       "rowIndex": 13
     },
@@ -8976,9 +8862,9 @@
       "buildLabel": "Tier 3 Weeklies",
       "tier": 3,
       "slot": "feet",
-      "raw": "Kirin's Sun-ate",
+      "raw": "Kirin's Sune-Ate",
       "items": [
-        "Kirin's Sun-ate"
+        "Kirin's Sune-Ate"
       ],
       "rowIndex": 6
     },
@@ -9223,9 +9109,9 @@
       "buildLabel": "Tier 5 weekly",
       "tier": 5,
       "slot": "trinket",
-      "raw": "Galam's Ring",
+      "raw": "Furious Ring",
       "items": [
-        "Galam's Ring"
+        "Furious Ring"
       ],
       "rowIndex": 10
     },
@@ -9275,9 +9161,9 @@
       "buildLabel": "Tier 6",
       "tier": 6,
       "slot": "weapon",
-      "raw": "Arthos' Axe",
+      "raw": "Athos' Axe",
       "items": [
-        "Arthos' Axe"
+        "Athos' Axe"
       ],
       "rowIndex": 12
     },
@@ -9366,9 +9252,9 @@
       "buildLabel": "Tier 6 final",
       "tier": 6,
       "slot": "weapon",
-      "raw": "Gungrir",
+      "raw": "Gungnir",
       "items": [
-        "Gungrir"
+        "Gungnir"
       ],
       "rowIndex": 13
     },
@@ -9535,7 +9421,7 @@
       "buildLabel": "Tier 6 hard/legendary (DMG)*",
       "tier": 6,
       "slot": "potionPrefix",
-      "raw": "acc pLvl (5x brisk, 1x savvy/master's))",
+      "raw": "acc pLvl (5x brisk, 1x savvy / master's))",
       "items": [
         "acc pLvl (5x brisk, 1x savvy",
         "master's))"
@@ -9614,7 +9500,7 @@
       "buildLabel": "Tier 6 hard/legendary (utility)**",
       "tier": 6,
       "slot": "trinket",
-      "raw": "Ring of the Mountain/Molten Core",
+      "raw": "Ring of the Mountain / Molten Core",
       "items": [
         "Ring of the Mountain",
         "Molten Core"
@@ -9745,9 +9631,9 @@
       "buildLabel": "Tier 2",
       "tier": 2,
       "slot": "body",
-      "raw": "Murlock Robe",
+      "raw": "Murlok Robe",
       "items": [
-        "Murlock Robe"
+        "Murlok Robe"
       ],
       "rowIndex": 3
     },
@@ -9758,9 +9644,9 @@
       "buildLabel": "Tier 2",
       "tier": 2,
       "slot": "hands",
-      "raw": "Murlock Mitts",
+      "raw": "Murlok Mitts",
       "items": [
-        "Murlock Mitts"
+        "Murlok Mitts"
       ],
       "rowIndex": 3
     },
@@ -9771,9 +9657,9 @@
       "buildLabel": "Tier 2",
       "tier": 2,
       "slot": "feet",
-      "raw": "Murlock Crakows",
+      "raw": "Murlok Crakows",
       "items": [
-        "Murlock Crakows"
+        "Murlok Crakows"
       ],
       "rowIndex": 3
     },
@@ -9797,9 +9683,9 @@
       "buildLabel": "Tier 2 Weeklies",
       "tier": 2,
       "slot": "weapon",
-      "raw": "Tidal Scepter",
+      "raw": "Tidal Sceptre",
       "items": [
-        "Tidal Scepter"
+        "Tidal Sceptre"
       ],
       "rowIndex": 4
     },
@@ -9914,9 +9800,9 @@
       "buildLabel": "Tier 3 Weeklies",
       "tier": 3,
       "slot": "weapon",
-      "raw": "Tidal Scepter",
+      "raw": "Tidal Sceptre",
       "items": [
-        "Tidal Scepter"
+        "Tidal Sceptre"
       ],
       "rowIndex": 6
     },
@@ -9940,9 +9826,9 @@
       "buildLabel": "Tier 3 Weeklies",
       "tier": 3,
       "slot": "feet",
-      "raw": "Kirin's Sun-ate",
+      "raw": "Kirin's Sune-Ate",
       "items": [
-        "Kirin's Sun-ate"
+        "Kirin's Sune-Ate"
       ],
       "rowIndex": 6
     },
@@ -10057,9 +9943,9 @@
       "buildLabel": "Tier 4 Weeklies",
       "tier": 4,
       "slot": "feet",
-      "raw": "Kirin's Sun-ate",
+      "raw": "Kirin's Sune-Ate",
       "items": [
-        "Kirin's Sun-ate"
+        "Kirin's Sune-Ate"
       ],
       "rowIndex": 8
     },
@@ -10629,9 +10515,9 @@
       "buildLabel": "Tier 3 Weeklies",
       "tier": 3,
       "slot": "feet",
-      "raw": "Kirin's Sun-ate",
+      "raw": "Kirin's Sune-Ate",
       "items": [
-        "Kirin's Sun-ate"
+        "Kirin's Sune-Ate"
       ],
       "rowIndex": 6
     },
@@ -10642,9 +10528,9 @@
       "buildLabel": "Tier 3 Weeklies",
       "tier": 3,
       "slot": "trinket",
-      "raw": "Khan Medallion",
+      "raw": "Khan's Medallion",
       "items": [
-        "Khan Medallion"
+        "Khan's Medallion"
       ],
       "rowIndex": 6
     },
@@ -11253,9 +11139,9 @@
       "buildLabel": "Tier 6 True Final",
       "tier": 6,
       "slot": "trinket",
-      "raw": "Khan Medallion",
+      "raw": "Khan's Medallion",
       "items": [
-        "Khan Medallion"
+        "Khan's Medallion"
       ],
       "rowIndex": 14
     },
@@ -11422,9 +11308,9 @@
       "buildLabel": "Tier 2",
       "tier": 2,
       "slot": "trinket",
-      "raw": "Highpriest's Necklace",
+      "raw": "Priest's Necklace",
       "items": [
-        "Highpriest's Necklace"
+        "Priest's Necklace"
       ],
       "rowIndex": 3
     },
@@ -11539,7 +11425,7 @@
       "buildLabel": "Tier 3 Weeklies",
       "tier": 3,
       "slot": "weapon",
-      "raw": "Khan's Bulawa/Titan Breaker",
+      "raw": "Khan's Bulawa / Titan Breaker",
       "items": [
         "Khan's Bulawa",
         "Titan Breaker"
@@ -11631,9 +11517,9 @@
       "buildLabel": "Tier 4",
       "tier": 4,
       "slot": "trinket",
-      "raw": "Undead Trinket",
+      "raw": "Undead Pendant",
       "items": [
-        "Undead Trinket"
+        "Undead Pendant"
       ],
       "rowIndex": 7
     },
@@ -11878,9 +11764,9 @@
       "buildLabel": "Tier 6 Scribe",
       "tier": 6,
       "slot": "trinket",
-      "raw": "Protector's Gift",
+      "raw": "Gift of the Forest",
       "items": [
-        "Protector's Gift"
+        "Gift of the Forest"
       ],
       "rowIndex": 11
     },
@@ -12009,9 +11895,9 @@
       "buildLabel": "Tier 2",
       "tier": 2,
       "slot": "body",
-      "raw": "Murlock Robe",
+      "raw": "Murlok Robe",
       "items": [
-        "Murlock Robe"
+        "Murlok Robe"
       ],
       "rowIndex": 3
     },
@@ -12048,10 +11934,10 @@
       "buildLabel": "Tier 2",
       "tier": 2,
       "slot": "trinket",
-      "raw": "Basamus' / Highpriest's",
+      "raw": "Basamus' Ring / Priest's Necklace",
       "items": [
-        "Basamus'",
-        "Highpriest's"
+        "Basamus' Ring",
+        "Priest's Necklace"
       ],
       "rowIndex": 3
     },
@@ -12192,9 +12078,9 @@
       "buildLabel": "Tier 3 Weeklies",
       "tier": 3,
       "slot": "feet",
-      "raw": "Kirin's Sun-ate",
+      "raw": "Kirin's Sune-Ate",
       "items": [
-        "Kirin's Sun-ate"
+        "Kirin's Sune-Ate"
       ],
       "rowIndex": 6
     },
@@ -12335,9 +12221,9 @@
       "buildLabel": "Tier 4 Weeklies",
       "tier": 4,
       "slot": "feet",
-      "raw": "Kirin's Sun-ate",
+      "raw": "Kirin's Sune-Ate",
       "items": [
-        "Kirin's Sun-ate"
+        "Kirin's Sune-Ate"
       ],
       "rowIndex": 8
     },
@@ -12433,19 +12319,6 @@
       "rowIndex": 9
     },
     {
-      "id": "dark-knight-tier-5-f2p-weekly-weapon",
-      "hero": "Dark Knight",
-      "buildId": "dark-knight-tier-5-f2p-weekly",
-      "buildLabel": "Tier 5 F2P weekly",
-      "tier": 5,
-      "slot": "weapon",
-      "raw": "-||-",
-      "items": [
-        "-||-"
-      ],
-      "rowIndex": 10
-    },
-    {
       "id": "dark-knight-tier-5-f2p-weekly-head",
       "hero": "Dark Knight",
       "buildId": "dark-knight-tier-5-f2p-weekly",
@@ -12455,19 +12328,6 @@
       "raw": "Hellfire Diadem",
       "items": [
         "Hellfire Diadem"
-      ],
-      "rowIndex": 10
-    },
-    {
-      "id": "dark-knight-tier-5-f2p-weekly-body",
-      "hero": "Dark Knight",
-      "buildId": "dark-knight-tier-5-f2p-weekly",
-      "buildLabel": "Tier 5 F2P weekly",
-      "tier": 5,
-      "slot": "body",
-      "raw": "-||-",
-      "items": [
-        "-||-"
       ],
       "rowIndex": 10
     },
@@ -12504,9 +12364,9 @@
       "buildLabel": "Tier 5 F2P weekly",
       "tier": 5,
       "slot": "trinket",
-      "raw": "Galam's Ring",
+      "raw": "Furious Ring",
       "items": [
-        "Galam's Ring"
+        "Furious Ring"
       ],
       "rowIndex": 10
     },
@@ -12533,58 +12393,6 @@
       "raw": "Khan's Bulawa",
       "items": [
         "Khan's Bulawa"
-      ],
-      "rowIndex": 11
-    },
-    {
-      "id": "dark-knight-tier-5-scribe-weekly-head",
-      "hero": "Dark Knight",
-      "buildId": "dark-knight-tier-5-scribe-weekly",
-      "buildLabel": "Tier 5 scribe+weekly",
-      "tier": 5,
-      "slot": "head",
-      "raw": "-||-",
-      "items": [
-        "-||-"
-      ],
-      "rowIndex": 11
-    },
-    {
-      "id": "dark-knight-tier-5-scribe-weekly-body",
-      "hero": "Dark Knight",
-      "buildId": "dark-knight-tier-5-scribe-weekly",
-      "buildLabel": "Tier 5 scribe+weekly",
-      "tier": 5,
-      "slot": "body",
-      "raw": "-||-",
-      "items": [
-        "-||-"
-      ],
-      "rowIndex": 11
-    },
-    {
-      "id": "dark-knight-tier-5-scribe-weekly-hands",
-      "hero": "Dark Knight",
-      "buildId": "dark-knight-tier-5-scribe-weekly",
-      "buildLabel": "Tier 5 scribe+weekly",
-      "tier": 5,
-      "slot": "hands",
-      "raw": "-||-",
-      "items": [
-        "-||-"
-      ],
-      "rowIndex": 11
-    },
-    {
-      "id": "dark-knight-tier-5-scribe-weekly-feet",
-      "hero": "Dark Knight",
-      "buildId": "dark-knight-tier-5-scribe-weekly",
-      "buildLabel": "Tier 5 scribe+weekly",
-      "tier": 5,
-      "slot": "feet",
-      "raw": "-||-",
-      "items": [
-        "-||-"
       ],
       "rowIndex": 11
     },
@@ -12641,28 +12449,15 @@
       "rowIndex": 12
     },
     {
-      "id": "dark-knight-tier-5-matk-f2p-alt-body",
-      "hero": "Dark Knight",
-      "buildId": "dark-knight-tier-5-matk-f2p-alt",
-      "buildLabel": "Tier 5 matk F2P (alt)",
-      "tier": 5,
-      "slot": "body",
-      "raw": "-||-",
-      "items": [
-        "-||-"
-      ],
-      "rowIndex": 12
-    },
-    {
       "id": "dark-knight-tier-5-matk-f2p-alt-hands",
       "hero": "Dark Knight",
       "buildId": "dark-knight-tier-5-matk-f2p-alt",
       "buildLabel": "Tier 5 matk F2P (alt)",
       "tier": 5,
       "slot": "hands",
-      "raw": "ED Mitts",
+      "raw": "Elder Demon Mitts",
       "items": [
-        "ED Mitts"
+        "Elder Demon Mitts"
       ],
       "rowIndex": 12
     },
@@ -12673,9 +12468,9 @@
       "buildLabel": "Tier 5 matk F2P (alt)",
       "tier": 5,
       "slot": "feet",
-      "raw": "ED Crakows",
+      "raw": "Elder Demon Crakows",
       "items": [
-        "ED Crakows"
+        "Elder Demon Crakows"
       ],
       "rowIndex": 12
     },
@@ -12706,58 +12501,6 @@
       "rowIndex": 12
     },
     {
-      "id": "dark-knight-tier-5-matk-weekly-f2p-alt-weapon",
-      "hero": "Dark Knight",
-      "buildId": "dark-knight-tier-5-matk-weekly-f2p-alt",
-      "buildLabel": "Tier 5 matk weekly F2P (alt)",
-      "tier": 5,
-      "slot": "weapon",
-      "raw": "-||-",
-      "items": [
-        "-||-"
-      ],
-      "rowIndex": 13
-    },
-    {
-      "id": "dark-knight-tier-5-matk-weekly-f2p-alt-head",
-      "hero": "Dark Knight",
-      "buildId": "dark-knight-tier-5-matk-weekly-f2p-alt",
-      "buildLabel": "Tier 5 matk weekly F2P (alt)",
-      "tier": 5,
-      "slot": "head",
-      "raw": "-||-",
-      "items": [
-        "-||-"
-      ],
-      "rowIndex": 13
-    },
-    {
-      "id": "dark-knight-tier-5-matk-weekly-f2p-alt-body",
-      "hero": "Dark Knight",
-      "buildId": "dark-knight-tier-5-matk-weekly-f2p-alt",
-      "buildLabel": "Tier 5 matk weekly F2P (alt)",
-      "tier": 5,
-      "slot": "body",
-      "raw": "-||-",
-      "items": [
-        "-||-"
-      ],
-      "rowIndex": 13
-    },
-    {
-      "id": "dark-knight-tier-5-matk-weekly-f2p-alt-hands",
-      "hero": "Dark Knight",
-      "buildId": "dark-knight-tier-5-matk-weekly-f2p-alt",
-      "buildLabel": "Tier 5 matk weekly F2P (alt)",
-      "tier": 5,
-      "slot": "hands",
-      "raw": "-||-",
-      "items": [
-        "-||-"
-      ],
-      "rowIndex": 13
-    },
-    {
       "id": "dark-knight-tier-5-matk-weekly-f2p-alt-feet",
       "hero": "Dark Knight",
       "buildId": "dark-knight-tier-5-matk-weekly-f2p-alt",
@@ -12767,19 +12510,6 @@
       "raw": "Cragus' Crakows",
       "items": [
         "Cragus' Crakows"
-      ],
-      "rowIndex": 13
-    },
-    {
-      "id": "dark-knight-tier-5-matk-weekly-f2p-alt-trinket",
-      "hero": "Dark Knight",
-      "buildId": "dark-knight-tier-5-matk-weekly-f2p-alt",
-      "buildLabel": "Tier 5 matk weekly F2P (alt)",
-      "tier": 5,
-      "slot": "trinket",
-      "raw": "-||-",
-      "items": [
-        "-||-"
       ],
       "rowIndex": 13
     },
@@ -12894,7 +12624,7 @@
       "buildLabel": "Tier 6 Crit",
       "tier": 6,
       "slot": "weapon",
-      "raw": "Eternal Wrath/Archanos",
+      "raw": "Eternal Wrath / Archanos",
       "items": [
         "Eternal Wrath",
         "Archanos"
@@ -12960,7 +12690,7 @@
       "buildLabel": "Tier 6 Crit",
       "tier": 6,
       "slot": "trinket",
-      "raw": "Arctic Howl/Pendant of Eternity",
+      "raw": "Arctic Howl / Pendant of Eternity",
       "items": [
         "Arctic Howl",
         "Pendant of Eternity"
@@ -13234,9 +12964,9 @@
       "buildLabel": "Tier 2 Weeklies",
       "tier": 2,
       "slot": "weapon",
-      "raw": "Levi's Bite",
+      "raw": "Leviathan's Bite",
       "items": [
-        "Levi's Bite"
+        "Leviathan's Bite"
       ],
       "rowIndex": 4
     },
@@ -13351,9 +13081,9 @@
       "buildLabel": "Tier 3 Weeklies",
       "tier": 3,
       "slot": "weapon",
-      "raw": "Levi's Bite",
+      "raw": "Leviathan's Bite",
       "items": [
-        "Levi's Bite"
+        "Leviathan's Bite"
       ],
       "rowIndex": 6
     },
@@ -13377,9 +13107,9 @@
       "buildLabel": "Tier 3 Weeklies",
       "tier": 3,
       "slot": "feet",
-      "raw": "Kirin's Sun-ate",
+      "raw": "Kirin's Sune-Ate",
       "items": [
-        "Kirin's Sun-ate"
+        "Kirin's Sune-Ate"
       ],
       "rowIndex": 6
     },
@@ -13390,9 +13120,9 @@
       "buildLabel": "Tier 3 Weeklies",
       "tier": 3,
       "slot": "trinket",
-      "raw": "Khan Medallion",
+      "raw": "Khan's Medallion",
       "items": [
-        "Khan Medallion"
+        "Khan's Medallion"
       ],
       "rowIndex": 6
     },
@@ -13481,9 +13211,9 @@
       "buildLabel": "Tier 4 Weeklies",
       "tier": 4,
       "slot": "weapon",
-      "raw": "Levi's Bite",
+      "raw": "Leviathan's Bite",
       "items": [
-        "Levi's Bite"
+        "Leviathan's Bite"
       ],
       "rowIndex": 8
     },
@@ -13507,9 +13237,9 @@
       "buildLabel": "Tier 4 Weeklies",
       "tier": 4,
       "slot": "feet",
-      "raw": "Kirin's Sun-ate",
+      "raw": "Kirin's Sune-Ate",
       "items": [
-        "Kirin's Sun-ate"
+        "Kirin's Sune-Ate"
       ],
       "rowIndex": 8
     },
@@ -13520,9 +13250,9 @@
       "buildLabel": "Tier 4 Weeklies",
       "tier": 4,
       "slot": "trinket",
-      "raw": "Khan Medallion",
+      "raw": "Khan's Medallion",
       "items": [
-        "Khan Medallion"
+        "Khan's Medallion"
       ],
       "rowIndex": 8
     },
@@ -13572,9 +13302,9 @@
       "buildLabel": "Tier 5",
       "tier": 5,
       "slot": "hands",
-      "raw": "ED Gauntlets",
+      "raw": "Elder Demon Gauntlets",
       "items": [
-        "ED Gauntlets"
+        "Elder Demon Gauntlets"
       ],
       "rowIndex": 9
     },
@@ -13598,10 +13328,10 @@
       "buildLabel": "Tier 5",
       "tier": 5,
       "slot": "trinket",
-      "raw": "Seastone Pendant/Khan Medallion",
+      "raw": "Seastone Pendant / Khan's Medallion",
       "items": [
         "Seastone Pendant",
-        "Khan Medallion"
+        "Khan's Medallion"
       ],
       "rowIndex": 9
     },
@@ -13677,9 +13407,9 @@
       "buildLabel": "Tier 6 optimal",
       "tier": 6,
       "slot": "trinket",
-      "raw": "Khan Medallion",
+      "raw": "Khan's Medallion",
       "items": [
-        "Khan Medallion"
+        "Khan's Medallion"
       ],
       "rowIndex": 10
     },
@@ -13768,9 +13498,9 @@
       "buildLabel": "Tier 6 luck (final)",
       "tier": 6,
       "slot": "trinket",
-      "raw": "Khan Medallion",
+      "raw": "Khan's Medallion",
       "items": [
-        "Khan Medallion"
+        "Khan's Medallion"
       ],
       "rowIndex": 11
     },
@@ -13781,7 +13511,7 @@
       "buildLabel": "Tier 6 luck (final)",
       "tier": 6,
       "slot": "potionPrefix",
-      "raw": "mAtt/Att/Acc plvl (1x Savvy, 5x Fortunate)",
+      "raw": "mAtt / Att / Acc plvl (1x Savvy, 5x Fortunate)",
       "items": [
         "mAtt",
         "Att",
@@ -13861,9 +13591,9 @@
       "buildLabel": "Tier 6 utility (final)",
       "tier": 6,
       "slot": "trinket",
-      "raw": "Aeon Heart",
+      "raw": "Heart of Aeon",
       "items": [
-        "Aeon Heart"
+        "Heart of Aeon"
       ],
       "rowIndex": 12
     },
@@ -13887,7 +13617,7 @@
       "buildLabel": "T6 SoI build (alt)(DK)",
       "tier": null,
       "slot": "weapon",
-      "raw": "Frostmourne/Archanos",
+      "raw": "Frostmourne / Archanos",
       "items": [
         "Frostmourne",
         "Archanos"
@@ -13953,9 +13683,9 @@
       "buildLabel": "T6 SoI build (alt)(DK)",
       "tier": null,
       "slot": "trinket",
-      "raw": "Khan Medallion",
+      "raw": "Khan's Medallion",
       "items": [
-        "Khan Medallion"
+        "Khan's Medallion"
       ],
       "rowIndex": 13
     },
@@ -14005,10 +13735,10 @@
       "buildLabel": "T6 SoI build (alt)(rogue)",
       "tier": null,
       "slot": "body",
-      "raw": "Iceborn Cloak/Archon's Chest",
+      "raw": "Iceborn Cloak / Archon's Embrace",
       "items": [
         "Iceborn Cloak",
-        "Archon's Chest"
+        "Archon's Embrace"
       ],
       "rowIndex": 14
     },
@@ -14045,9 +13775,9 @@
       "buildLabel": "T6 SoI build (alt)(rogue)",
       "tier": null,
       "slot": "trinket",
-      "raw": "Khan Medallion",
+      "raw": "Khan's Medallion",
       "items": [
-        "Khan Medallion"
+        "Khan's Medallion"
       ],
       "rowIndex": 14
     },
@@ -14136,9 +13866,9 @@
       "buildLabel": "T6 SoI build (alt)(sin)",
       "tier": null,
       "slot": "trinket",
-      "raw": "Khan Medallion",
+      "raw": "Khan's Medallion",
       "items": [
-        "Khan Medallion"
+        "Khan's Medallion"
       ],
       "rowIndex": 15
     },
@@ -14227,9 +13957,9 @@
       "buildLabel": "T6 SoI build (alt)(mage)",
       "tier": null,
       "slot": "trinket",
-      "raw": "Khan Medallion",
+      "raw": "Khan's Medallion",
       "items": [
-        "Khan Medallion"
+        "Khan's Medallion"
       ],
       "rowIndex": 16
     },
@@ -15104,9 +14834,9 @@
         "buildLabel": "Tier 2",
         "tier": 2,
         "slot": "body",
-        "raw": "Murlock Robe",
+        "raw": "Murlok Robe",
         "items": [
-          "Murlock Robe"
+          "Murlok Robe"
         ],
         "rowIndex": 3
       },
@@ -15117,9 +14847,9 @@
         "buildLabel": "Tier 2",
         "tier": 2,
         "slot": "hands",
-        "raw": "Murlock Mitts",
+        "raw": "Murlok Mitts",
         "items": [
-          "Murlock Mitts"
+          "Murlok Mitts"
         ],
         "rowIndex": 3
       },
@@ -15130,9 +14860,9 @@
         "buildLabel": "Tier 2",
         "tier": 2,
         "slot": "feet",
-        "raw": "Murlock Crakows",
+        "raw": "Murlok Crakows",
         "items": [
-          "Murlock Crakows"
+          "Murlok Crakows"
         ],
         "rowIndex": 3
       },
@@ -15156,9 +14886,9 @@
         "buildLabel": "Tier 2 Weeklies",
         "tier": 2,
         "slot": "weapon",
-        "raw": "Tidal Scepter",
+        "raw": "Tidal Sceptre",
         "items": [
-          "Tidal Scepter"
+          "Tidal Sceptre"
         ],
         "rowIndex": 4
       },
@@ -15416,9 +15146,9 @@
         "buildLabel": "Tier 2",
         "tier": 2,
         "slot": "body",
-        "raw": "Murlock Robe",
+        "raw": "Murlok Robe",
         "items": [
-          "Murlock Robe"
+          "Murlok Robe"
         ],
         "rowIndex": 3
       },
@@ -15429,9 +15159,9 @@
         "buildLabel": "Tier 2",
         "tier": 2,
         "slot": "hands",
-        "raw": "Murlock Mitts",
+        "raw": "Murlok Mitts",
         "items": [
-          "Murlock Mitts"
+          "Murlok Mitts"
         ],
         "rowIndex": 3
       },
@@ -15442,9 +15172,9 @@
         "buildLabel": "Tier 2",
         "tier": 2,
         "slot": "feet",
-        "raw": "Murlock Crakows",
+        "raw": "Murlok Crakows",
         "items": [
-          "Murlock Crakows"
+          "Murlok Crakows"
         ],
         "rowIndex": 3
       },
@@ -15468,9 +15198,9 @@
         "buildLabel": "Tier 2 Weeklies",
         "tier": 2,
         "slot": "weapon",
-        "raw": "Tidal Scepter",
+        "raw": "Tidal Sceptre",
         "items": [
-          "Tidal Scepter"
+          "Tidal Sceptre"
         ],
         "rowIndex": 4
       },
@@ -15676,9 +15406,9 @@
         "buildLabel": "Tier 2",
         "tier": 2,
         "slot": "trinket",
-        "raw": "Highpriest's Necklace",
+        "raw": "Priest's Necklace",
         "items": [
-          "Highpriest's Necklace"
+          "Priest's Necklace"
         ],
         "rowIndex": 3
       },
@@ -15741,9 +15471,9 @@
         "buildLabel": "Tier 2",
         "tier": 2,
         "slot": "body",
-        "raw": "Murlock Robe",
+        "raw": "Murlok Robe",
         "items": [
-          "Murlock Robe"
+          "Murlok Robe"
         ],
         "rowIndex": 3
       },
@@ -15780,10 +15510,10 @@
         "buildLabel": "Tier 2",
         "tier": 2,
         "slot": "trinket",
-        "raw": "Basamus' / Highpriest's",
+        "raw": "Basamus' Ring / Priest's Necklace",
         "items": [
-          "Basamus'",
-          "Highpriest's"
+          "Basamus' Ring",
+          "Priest's Necklace"
         ],
         "rowIndex": 3
       },
@@ -15898,9 +15628,9 @@
         "buildLabel": "Tier 2 Weeklies",
         "tier": 2,
         "slot": "weapon",
-        "raw": "Levi's Bite",
+        "raw": "Leviathan's Bite",
         "items": [
-          "Levi's Bite"
+          "Leviathan's Bite"
         ],
         "rowIndex": 4
       },
@@ -16043,9 +15773,9 @@
         "buildLabel": "Tier 3 Weeklies",
         "tier": 3,
         "slot": "feet",
-        "raw": "Magnataur's Greaves",
+        "raw": "Magnotaur's Sabatons",
         "items": [
-          "Magnataur's Greaves"
+          "Magnotaur's Sabatons"
         ],
         "rowIndex": 6
       },
@@ -16147,9 +15877,9 @@
         "buildLabel": "Tier 3 Weeklies",
         "tier": 3,
         "slot": "weapon",
-        "raw": "Tidal Scepter",
+        "raw": "Tidal Sceptre",
         "items": [
-          "Tidal Scepter"
+          "Tidal Sceptre"
         ],
         "rowIndex": 6
       },
@@ -16173,9 +15903,9 @@
         "buildLabel": "Tier 3 Weeklies",
         "tier": 3,
         "slot": "feet",
-        "raw": "Kirin's Sun-ate",
+        "raw": "Kirin's Sune-Ate",
         "items": [
-          "Kirin's Sun-ate"
+          "Kirin's Sune-Ate"
         ],
         "rowIndex": 6
       },
@@ -16251,9 +15981,9 @@
         "buildLabel": "Tier 3",
         "tier": 3,
         "slot": "feet",
-        "raw": "Fighter's Greaves",
+        "raw": "Fighters Greaves",
         "items": [
-          "Fighter's Greaves"
+          "Fighters Greaves"
         ],
         "rowIndex": 5
       },
@@ -16303,9 +16033,9 @@
         "buildLabel": "Tier 3 Weeklies",
         "tier": 3,
         "slot": "feet",
-        "raw": "Kirin's Sun-ate",
+        "raw": "Kirin's Sune-Ate",
         "items": [
-          "Kirin's Sun-ate"
+          "Kirin's Sune-Ate"
         ],
         "rowIndex": 6
       },
@@ -16420,9 +16150,9 @@
         "buildLabel": "Tier 3 Weeklies",
         "tier": 3,
         "slot": "feet",
-        "raw": "Kirin's Sun-ate",
+        "raw": "Kirin's Sune-Ate",
         "items": [
-          "Kirin's Sun-ate"
+          "Kirin's Sune-Ate"
         ],
         "rowIndex": 6
       },
@@ -16511,9 +16241,9 @@
         "buildLabel": "Tier 3 Weeklies",
         "tier": 3,
         "slot": "weapon",
-        "raw": "Tidal Scepter",
+        "raw": "Tidal Sceptre",
         "items": [
-          "Tidal Scepter"
+          "Tidal Sceptre"
         ],
         "rowIndex": 6
       },
@@ -16537,9 +16267,9 @@
         "buildLabel": "Tier 3 Weeklies",
         "tier": 3,
         "slot": "feet",
-        "raw": "Kirin's Sun-ate",
+        "raw": "Kirin's Sune-Ate",
         "items": [
-          "Kirin's Sun-ate"
+          "Kirin's Sune-Ate"
         ],
         "rowIndex": 6
       },
@@ -16654,9 +16384,9 @@
         "buildLabel": "Tier 3 Weeklies",
         "tier": 3,
         "slot": "feet",
-        "raw": "Kirin's Sun-ate",
+        "raw": "Kirin's Sune-Ate",
         "items": [
-          "Kirin's Sun-ate"
+          "Kirin's Sune-Ate"
         ],
         "rowIndex": 6
       },
@@ -16667,9 +16397,9 @@
         "buildLabel": "Tier 3 Weeklies",
         "tier": 3,
         "slot": "trinket",
-        "raw": "Khan Medallion",
+        "raw": "Khan's Medallion",
         "items": [
-          "Khan Medallion"
+          "Khan's Medallion"
         ],
         "rowIndex": 6
       },
@@ -16758,7 +16488,7 @@
         "buildLabel": "Tier 3 Weeklies",
         "tier": 3,
         "slot": "weapon",
-        "raw": "Khan's Bulawa/Titan Breaker",
+        "raw": "Khan's Bulawa / Titan Breaker",
         "items": [
           "Khan's Bulawa",
           "Titan Breaker"
@@ -16889,9 +16619,9 @@
         "buildLabel": "Tier 3 Weeklies",
         "tier": 3,
         "slot": "feet",
-        "raw": "Kirin's Sun-ate",
+        "raw": "Kirin's Sune-Ate",
         "items": [
-          "Kirin's Sun-ate"
+          "Kirin's Sune-Ate"
         ],
         "rowIndex": 6
       },
@@ -16993,9 +16723,9 @@
         "buildLabel": "Tier 3 Weeklies",
         "tier": 3,
         "slot": "weapon",
-        "raw": "Levi's Bite",
+        "raw": "Leviathan's Bite",
         "items": [
-          "Levi's Bite"
+          "Leviathan's Bite"
         ],
         "rowIndex": 6
       },
@@ -17019,9 +16749,9 @@
         "buildLabel": "Tier 3 Weeklies",
         "tier": 3,
         "slot": "feet",
-        "raw": "Kirin's Sun-ate",
+        "raw": "Kirin's Sune-Ate",
         "items": [
-          "Kirin's Sun-ate"
+          "Kirin's Sune-Ate"
         ],
         "rowIndex": 6
       },
@@ -17032,9 +16762,9 @@
         "buildLabel": "Tier 3 Weeklies",
         "tier": 3,
         "slot": "trinket",
-        "raw": "Khan Medallion",
+        "raw": "Khan's Medallion",
         "items": [
-          "Khan Medallion"
+          "Khan's Medallion"
         ],
         "rowIndex": 6
       }
@@ -17242,9 +16972,9 @@
         "buildLabel": "Tier 4 Weeklies",
         "tier": 4,
         "slot": "feet",
-        "raw": "Kirin's Sun-ate",
+        "raw": "Kirin's Sune-Ate",
         "items": [
-          "Kirin's Sun-ate"
+          "Kirin's Sune-Ate"
         ],
         "rowIndex": 8
       },
@@ -17255,7 +16985,7 @@
         "buildLabel": "Tier 4 Weeklies",
         "tier": 4,
         "slot": "trinket",
-        "raw": "Tidal Boon/Hel's Earring",
+        "raw": "Tidal Boon / Hel's Earring",
         "items": [
           "Tidal Boon",
           "Hel's Earring"
@@ -17581,9 +17311,9 @@
         "buildLabel": "Tier 4 Weeklies",
         "tier": 4,
         "slot": "feet",
-        "raw": "Kirin's Sun-ate",
+        "raw": "Kirin's Sune-Ate",
         "items": [
-          "Kirin's Sun-ate"
+          "Kirin's Sune-Ate"
         ],
         "rowIndex": 8
       },
@@ -17789,9 +17519,9 @@
         "buildLabel": "Tier 4",
         "tier": 4,
         "slot": "trinket",
-        "raw": "Undead Trinket",
+        "raw": "Undead Pendant",
         "items": [
-          "Undead Trinket"
+          "Undead Pendant"
         ],
         "rowIndex": 7
       },
@@ -17945,9 +17675,9 @@
         "buildLabel": "Tier 4 Weeklies",
         "tier": 4,
         "slot": "feet",
-        "raw": "Kirin's Sun-ate",
+        "raw": "Kirin's Sune-Ate",
         "items": [
-          "Kirin's Sun-ate"
+          "Kirin's Sune-Ate"
         ],
         "rowIndex": 8
       },
@@ -18036,9 +17766,9 @@
         "buildLabel": "Tier 4 Weeklies",
         "tier": 4,
         "slot": "weapon",
-        "raw": "Levi's Bite",
+        "raw": "Leviathan's Bite",
         "items": [
-          "Levi's Bite"
+          "Leviathan's Bite"
         ],
         "rowIndex": 8
       },
@@ -18062,9 +17792,9 @@
         "buildLabel": "Tier 4 Weeklies",
         "tier": 4,
         "slot": "feet",
-        "raw": "Kirin's Sun-ate",
+        "raw": "Kirin's Sune-Ate",
         "items": [
-          "Kirin's Sun-ate"
+          "Kirin's Sune-Ate"
         ],
         "rowIndex": 8
       },
@@ -18075,9 +17805,9 @@
         "buildLabel": "Tier 4 Weeklies",
         "tier": 4,
         "slot": "trinket",
-        "raw": "Khan Medallion",
+        "raw": "Khan's Medallion",
         "items": [
-          "Khan Medallion"
+          "Khan's Medallion"
         ],
         "rowIndex": 8
       }
@@ -18090,7 +17820,7 @@
         "buildLabel": "Tier 5 (F2P)",
         "tier": 5,
         "slot": "weapon",
-        "raw": "Fate's Decree/Oni's Dec.",
+        "raw": "Fate's Decree / Oni's Dec.",
         "items": [
           "Fate's Decree",
           "Oni's Dec."
@@ -18156,7 +17886,7 @@
         "buildLabel": "Tier 5 (F2P)",
         "tier": 5,
         "slot": "trinket",
-        "raw": "Shadow Earring/Molten Core",
+        "raw": "Shadow Earring / Molten Core",
         "items": [
           "Shadow Earring",
           "Molten Core"
@@ -18222,9 +17952,9 @@
         "buildLabel": "Tier 5 Optimal",
         "tier": 5,
         "slot": "hands",
-        "raw": "BD Gauntlets/Galam's Gauntlets",
+        "raw": "Black Dragon Gauntlets / Galam's Gauntlets",
         "items": [
-          "BD Gauntlets",
+          "Black Dragon Gauntlets",
           "Galam's Gauntlets"
         ],
         "rowIndex": 10
@@ -18236,9 +17966,9 @@
         "buildLabel": "Tier 5 Optimal",
         "tier": 5,
         "slot": "feet",
-        "raw": "BD Sabatons",
+        "raw": "Black Dragon Sabatons",
         "items": [
-          "BD Sabatons"
+          "Black Dragon Sabatons"
         ],
         "rowIndex": 10
       },
@@ -18373,32 +18103,6 @@
         "rowIndex": 10
       },
       {
-        "id": "mage-tier-5-mattack-body",
-        "hero": "Mage",
-        "buildId": "mage-tier-5-mattack",
-        "buildLabel": "Tier 5 - mAttack",
-        "tier": 5,
-        "slot": "body",
-        "raw": "-||-",
-        "items": [
-          "-||-"
-        ],
-        "rowIndex": 10
-      },
-      {
-        "id": "mage-tier-5-mattack-hands",
-        "hero": "Mage",
-        "buildId": "mage-tier-5-mattack",
-        "buildLabel": "Tier 5 - mAttack",
-        "tier": 5,
-        "slot": "hands",
-        "raw": "-||-",
-        "items": [
-          "-||-"
-        ],
-        "rowIndex": 10
-      },
-      {
         "id": "mage-tier-5-mattack-feet",
         "hero": "Mage",
         "buildId": "mage-tier-5-mattack",
@@ -18438,19 +18142,6 @@
         "rowIndex": 10
       },
       {
-        "id": "mage-tier-5-weekly-weapon",
-        "hero": "Mage",
-        "buildId": "mage-tier-5-weekly",
-        "buildLabel": "Tier 5 weekly",
-        "tier": 5,
-        "slot": "weapon",
-        "raw": "-||-",
-        "items": [
-          "-||-"
-        ],
-        "rowIndex": 11
-      },
-      {
         "id": "mage-tier-5-weekly-head",
         "hero": "Mage",
         "buildId": "mage-tier-5-weekly",
@@ -18460,32 +18151,6 @@
         "raw": "Hellfire Diadem",
         "items": [
           "Hellfire Diadem"
-        ],
-        "rowIndex": 11
-      },
-      {
-        "id": "mage-tier-5-weekly-body",
-        "hero": "Mage",
-        "buildId": "mage-tier-5-weekly",
-        "buildLabel": "Tier 5 weekly",
-        "tier": 5,
-        "slot": "body",
-        "raw": "-||-",
-        "items": [
-          "-||-"
-        ],
-        "rowIndex": 11
-      },
-      {
-        "id": "mage-tier-5-weekly-hands",
-        "hero": "Mage",
-        "buildId": "mage-tier-5-weekly",
-        "buildLabel": "Tier 5 weekly",
-        "tier": 5,
-        "slot": "hands",
-        "raw": "-||-",
-        "items": [
-          "-||-"
         ],
         "rowIndex": 11
       },
@@ -18587,7 +18252,7 @@
         "buildLabel": "Tier 5",
         "tier": 5,
         "slot": "feet",
-        "raw": "Elder Demon Boots/Fafnir's Boots",
+        "raw": "Elder Demon Boots / Fafnir's Boots",
         "items": [
           "Elder Demon Boots",
           "Fafnir's Boots"
@@ -18601,10 +18266,10 @@
         "buildLabel": "Tier 5",
         "tier": 5,
         "slot": "trinket",
-        "raw": "Khan's Medallion/Cerb. Pendant",
+        "raw": "Khan's Medallion / Cerberus' Pendant",
         "items": [
           "Khan's Medallion",
-          "Cerb. Pendant"
+          "Cerberus' Pendant"
         ],
         "rowIndex": 9
       },
@@ -18654,9 +18319,9 @@
         "buildLabel": "Tier 5 Weekly",
         "tier": 5,
         "slot": "trinket",
-        "raw": "Galam's Ring",
+        "raw": "Furious Ring",
         "items": [
-          "Galam's Ring"
+          "Furious Ring"
         ],
         "rowIndex": 10
       },
@@ -18836,9 +18501,9 @@
         "buildLabel": "Tier 5 weekly",
         "tier": 5,
         "slot": "trinket",
-        "raw": "Galam's Ring",
+        "raw": "Furious Ring",
         "items": [
-          "Galam's Ring"
+          "Furious Ring"
         ],
         "rowIndex": 10
       },
@@ -19467,19 +19132,6 @@
         "rowIndex": 9
       },
       {
-        "id": "dark-knight-tier-5-f2p-weekly-weapon",
-        "hero": "Dark Knight",
-        "buildId": "dark-knight-tier-5-f2p-weekly",
-        "buildLabel": "Tier 5 F2P weekly",
-        "tier": 5,
-        "slot": "weapon",
-        "raw": "-||-",
-        "items": [
-          "-||-"
-        ],
-        "rowIndex": 10
-      },
-      {
         "id": "dark-knight-tier-5-f2p-weekly-head",
         "hero": "Dark Knight",
         "buildId": "dark-knight-tier-5-f2p-weekly",
@@ -19489,19 +19141,6 @@
         "raw": "Hellfire Diadem",
         "items": [
           "Hellfire Diadem"
-        ],
-        "rowIndex": 10
-      },
-      {
-        "id": "dark-knight-tier-5-f2p-weekly-body",
-        "hero": "Dark Knight",
-        "buildId": "dark-knight-tier-5-f2p-weekly",
-        "buildLabel": "Tier 5 F2P weekly",
-        "tier": 5,
-        "slot": "body",
-        "raw": "-||-",
-        "items": [
-          "-||-"
         ],
         "rowIndex": 10
       },
@@ -19538,9 +19177,9 @@
         "buildLabel": "Tier 5 F2P weekly",
         "tier": 5,
         "slot": "trinket",
-        "raw": "Galam's Ring",
+        "raw": "Furious Ring",
         "items": [
-          "Galam's Ring"
+          "Furious Ring"
         ],
         "rowIndex": 10
       },
@@ -19567,58 +19206,6 @@
         "raw": "Khan's Bulawa",
         "items": [
           "Khan's Bulawa"
-        ],
-        "rowIndex": 11
-      },
-      {
-        "id": "dark-knight-tier-5-scribe-weekly-head",
-        "hero": "Dark Knight",
-        "buildId": "dark-knight-tier-5-scribe-weekly",
-        "buildLabel": "Tier 5 scribe+weekly",
-        "tier": 5,
-        "slot": "head",
-        "raw": "-||-",
-        "items": [
-          "-||-"
-        ],
-        "rowIndex": 11
-      },
-      {
-        "id": "dark-knight-tier-5-scribe-weekly-body",
-        "hero": "Dark Knight",
-        "buildId": "dark-knight-tier-5-scribe-weekly",
-        "buildLabel": "Tier 5 scribe+weekly",
-        "tier": 5,
-        "slot": "body",
-        "raw": "-||-",
-        "items": [
-          "-||-"
-        ],
-        "rowIndex": 11
-      },
-      {
-        "id": "dark-knight-tier-5-scribe-weekly-hands",
-        "hero": "Dark Knight",
-        "buildId": "dark-knight-tier-5-scribe-weekly",
-        "buildLabel": "Tier 5 scribe+weekly",
-        "tier": 5,
-        "slot": "hands",
-        "raw": "-||-",
-        "items": [
-          "-||-"
-        ],
-        "rowIndex": 11
-      },
-      {
-        "id": "dark-knight-tier-5-scribe-weekly-feet",
-        "hero": "Dark Knight",
-        "buildId": "dark-knight-tier-5-scribe-weekly",
-        "buildLabel": "Tier 5 scribe+weekly",
-        "tier": 5,
-        "slot": "feet",
-        "raw": "-||-",
-        "items": [
-          "-||-"
         ],
         "rowIndex": 11
       },
@@ -19675,28 +19262,15 @@
         "rowIndex": 12
       },
       {
-        "id": "dark-knight-tier-5-matk-f2p-alt-body",
-        "hero": "Dark Knight",
-        "buildId": "dark-knight-tier-5-matk-f2p-alt",
-        "buildLabel": "Tier 5 matk F2P (alt)",
-        "tier": 5,
-        "slot": "body",
-        "raw": "-||-",
-        "items": [
-          "-||-"
-        ],
-        "rowIndex": 12
-      },
-      {
         "id": "dark-knight-tier-5-matk-f2p-alt-hands",
         "hero": "Dark Knight",
         "buildId": "dark-knight-tier-5-matk-f2p-alt",
         "buildLabel": "Tier 5 matk F2P (alt)",
         "tier": 5,
         "slot": "hands",
-        "raw": "ED Mitts",
+        "raw": "Elder Demon Mitts",
         "items": [
-          "ED Mitts"
+          "Elder Demon Mitts"
         ],
         "rowIndex": 12
       },
@@ -19707,9 +19281,9 @@
         "buildLabel": "Tier 5 matk F2P (alt)",
         "tier": 5,
         "slot": "feet",
-        "raw": "ED Crakows",
+        "raw": "Elder Demon Crakows",
         "items": [
-          "ED Crakows"
+          "Elder Demon Crakows"
         ],
         "rowIndex": 12
       },
@@ -19740,58 +19314,6 @@
         "rowIndex": 12
       },
       {
-        "id": "dark-knight-tier-5-matk-weekly-f2p-alt-weapon",
-        "hero": "Dark Knight",
-        "buildId": "dark-knight-tier-5-matk-weekly-f2p-alt",
-        "buildLabel": "Tier 5 matk weekly F2P (alt)",
-        "tier": 5,
-        "slot": "weapon",
-        "raw": "-||-",
-        "items": [
-          "-||-"
-        ],
-        "rowIndex": 13
-      },
-      {
-        "id": "dark-knight-tier-5-matk-weekly-f2p-alt-head",
-        "hero": "Dark Knight",
-        "buildId": "dark-knight-tier-5-matk-weekly-f2p-alt",
-        "buildLabel": "Tier 5 matk weekly F2P (alt)",
-        "tier": 5,
-        "slot": "head",
-        "raw": "-||-",
-        "items": [
-          "-||-"
-        ],
-        "rowIndex": 13
-      },
-      {
-        "id": "dark-knight-tier-5-matk-weekly-f2p-alt-body",
-        "hero": "Dark Knight",
-        "buildId": "dark-knight-tier-5-matk-weekly-f2p-alt",
-        "buildLabel": "Tier 5 matk weekly F2P (alt)",
-        "tier": 5,
-        "slot": "body",
-        "raw": "-||-",
-        "items": [
-          "-||-"
-        ],
-        "rowIndex": 13
-      },
-      {
-        "id": "dark-knight-tier-5-matk-weekly-f2p-alt-hands",
-        "hero": "Dark Knight",
-        "buildId": "dark-knight-tier-5-matk-weekly-f2p-alt",
-        "buildLabel": "Tier 5 matk weekly F2P (alt)",
-        "tier": 5,
-        "slot": "hands",
-        "raw": "-||-",
-        "items": [
-          "-||-"
-        ],
-        "rowIndex": 13
-      },
-      {
         "id": "dark-knight-tier-5-matk-weekly-f2p-alt-feet",
         "hero": "Dark Knight",
         "buildId": "dark-knight-tier-5-matk-weekly-f2p-alt",
@@ -19801,19 +19323,6 @@
         "raw": "Cragus' Crakows",
         "items": [
           "Cragus' Crakows"
-        ],
-        "rowIndex": 13
-      },
-      {
-        "id": "dark-knight-tier-5-matk-weekly-f2p-alt-trinket",
-        "hero": "Dark Knight",
-        "buildId": "dark-knight-tier-5-matk-weekly-f2p-alt",
-        "buildLabel": "Tier 5 matk weekly F2P (alt)",
-        "tier": 5,
-        "slot": "trinket",
-        "raw": "-||-",
-        "items": [
-          "-||-"
         ],
         "rowIndex": 13
       },
@@ -19876,9 +19385,9 @@
         "buildLabel": "Tier 5",
         "tier": 5,
         "slot": "hands",
-        "raw": "ED Gauntlets",
+        "raw": "Elder Demon Gauntlets",
         "items": [
-          "ED Gauntlets"
+          "Elder Demon Gauntlets"
         ],
         "rowIndex": 9
       },
@@ -19902,10 +19411,10 @@
         "buildLabel": "Tier 5",
         "tier": 5,
         "slot": "trinket",
-        "raw": "Seastone Pendant/Khan Medallion",
+        "raw": "Seastone Pendant / Khan's Medallion",
         "items": [
           "Seastone Pendant",
-          "Khan Medallion"
+          "Khan's Medallion"
         ],
         "rowIndex": 9
       }
@@ -20035,10 +19544,10 @@
         "buildLabel": "Tier 6 Final",
         "tier": 6,
         "slot": "hands",
-        "raw": "ED/BD Gauntlets",
+        "raw": "Elder Demon Gauntlets / Black Dragon Gauntlets",
         "items": [
-          "ED",
-          "BD Gauntlets"
+          "Elder Demon Gauntlets",
+          "Black Dragon Gauntlets"
         ],
         "rowIndex": 12
       },
@@ -20127,7 +19636,7 @@
         "buildLabel": "Tier 6 Damage(alt)",
         "tier": 6,
         "slot": "hands",
-        "raw": "Eternity Fists/Oblivion Shackles",
+        "raw": "Eternity Fists / Oblivion Shackles",
         "items": [
           "Eternity Fists",
           "Oblivion Shackles"
@@ -20219,9 +19728,9 @@
         "buildLabel": "Tier 6 HP(alt)",
         "tier": 6,
         "slot": "hands",
-        "raw": "BD Gauntlets",
+        "raw": "Black Dragon Gauntlets",
         "items": [
-          "BD Gauntlets"
+          "Black Dragon Gauntlets"
         ],
         "rowIndex": 14
       },
@@ -20245,10 +19754,10 @@
         "buildLabel": "Tier 6 HP(alt)",
         "tier": 6,
         "slot": "trinket",
-        "raw": "Titan Soul/RotM",
+        "raw": "Titan Soul / Ring of the Mountain",
         "items": [
           "Titan Soul",
-          "RotM"
+          "Ring of the Mountain"
         ],
         "rowIndex": 14
       },
@@ -20272,7 +19781,7 @@
         "buildLabel": "Tier 6 - AM Crit",
         "tier": 6,
         "slot": "weapon",
-        "raw": "Archanos/Eternal Wrath",
+        "raw": "Archanos / Eternal Wrath",
         "items": [
           "Archanos",
           "Eternal Wrath"
@@ -20299,7 +19808,7 @@
         "buildLabel": "Tier 6 - AM Crit",
         "tier": 6,
         "slot": "body",
-        "raw": "Eternal Frost/Ouroboros' Robe",
+        "raw": "Eternal Frost / Ouroboros' Robe",
         "items": [
           "Eternal Frost",
           "Ouroboros' Robe"
@@ -20394,19 +19903,6 @@
         "raw": "Eternal Frost",
         "items": [
           "Eternal Frost"
-        ],
-        "rowIndex": 13
-      },
-      {
-        "id": "mage-tier-6-mattack-alt-hands",
-        "hero": "Mage",
-        "buildId": "mage-tier-6-mattack-alt",
-        "buildLabel": "Tier 6 mAttack(alt)*",
-        "tier": 6,
-        "slot": "hands",
-        "raw": "-||-",
-        "items": [
-          "-||-"
         ],
         "rowIndex": 13
       },
@@ -20573,10 +20069,10 @@
         "buildLabel": "Tier 6 True",
         "tier": 6,
         "slot": "body",
-        "raw": "Iceborn Cloak/Archon's Chest",
+        "raw": "Iceborn Cloak / Archon's Embrace",
         "items": [
           "Iceborn Cloak",
-          "Archon's Chest"
+          "Archon's Embrace"
         ],
         "rowIndex": 13
       },
@@ -20639,9 +20135,9 @@
         "buildLabel": "Tier 6",
         "tier": 6,
         "slot": "weapon",
-        "raw": "Arthos' Axe",
+        "raw": "Athos' Axe",
         "items": [
-          "Arthos' Axe"
+          "Athos' Axe"
         ],
         "rowIndex": 12
       },
@@ -20730,9 +20226,9 @@
         "buildLabel": "Tier 6 final",
         "tier": 6,
         "slot": "weapon",
-        "raw": "Gungrir",
+        "raw": "Gungnir",
         "items": [
-          "Gungrir"
+          "Gungnir"
         ],
         "rowIndex": 13
       },
@@ -20899,7 +20395,7 @@
         "buildLabel": "Tier 6 hard/legendary (DMG)*",
         "tier": 6,
         "slot": "potionPrefix",
-        "raw": "acc pLvl (5x brisk, 1x savvy/master's))",
+        "raw": "acc pLvl (5x brisk, 1x savvy / master's))",
         "items": [
           "acc pLvl (5x brisk, 1x savvy",
           "master's))"
@@ -20978,7 +20474,7 @@
         "buildLabel": "Tier 6 hard/legendary (utility)**",
         "tier": 6,
         "slot": "trinket",
-        "raw": "Ring of the Mountain/Molten Core",
+        "raw": "Ring of the Mountain / Molten Core",
         "items": [
           "Ring of the Mountain",
           "Molten Core"
@@ -21356,9 +20852,9 @@
         "buildLabel": "Tier 6 True Final",
         "tier": 6,
         "slot": "trinket",
-        "raw": "Khan Medallion",
+        "raw": "Khan's Medallion",
         "items": [
-          "Khan Medallion"
+          "Khan's Medallion"
         ],
         "rowIndex": 14
       },
@@ -21499,9 +20995,9 @@
         "buildLabel": "Tier 6 Scribe",
         "tier": 6,
         "slot": "trinket",
-        "raw": "Protector's Gift",
+        "raw": "Gift of the Forest",
         "items": [
-          "Protector's Gift"
+          "Gift of the Forest"
         ],
         "rowIndex": 11
       },
@@ -21616,7 +21112,7 @@
         "buildLabel": "Tier 6 Crit",
         "tier": 6,
         "slot": "weapon",
-        "raw": "Eternal Wrath/Archanos",
+        "raw": "Eternal Wrath / Archanos",
         "items": [
           "Eternal Wrath",
           "Archanos"
@@ -21682,7 +21178,7 @@
         "buildLabel": "Tier 6 Crit",
         "tier": 6,
         "slot": "trinket",
-        "raw": "Arctic Howl/Pendant of Eternity",
+        "raw": "Arctic Howl / Pendant of Eternity",
         "items": [
           "Arctic Howl",
           "Pendant of Eternity"
@@ -21865,9 +21361,9 @@
         "buildLabel": "Tier 6 optimal",
         "tier": 6,
         "slot": "trinket",
-        "raw": "Khan Medallion",
+        "raw": "Khan's Medallion",
         "items": [
-          "Khan Medallion"
+          "Khan's Medallion"
         ],
         "rowIndex": 10
       },
@@ -21956,9 +21452,9 @@
         "buildLabel": "Tier 6 luck (final)",
         "tier": 6,
         "slot": "trinket",
-        "raw": "Khan Medallion",
+        "raw": "Khan's Medallion",
         "items": [
-          "Khan Medallion"
+          "Khan's Medallion"
         ],
         "rowIndex": 11
       },
@@ -21969,7 +21465,7 @@
         "buildLabel": "Tier 6 luck (final)",
         "tier": 6,
         "slot": "potionPrefix",
-        "raw": "mAtt/Att/Acc plvl (1x Savvy, 5x Fortunate)",
+        "raw": "mAtt / Att / Acc plvl (1x Savvy, 5x Fortunate)",
         "items": [
           "mAtt",
           "Att",
@@ -22049,9 +21545,9 @@
         "buildLabel": "Tier 6 utility (final)",
         "tier": 6,
         "slot": "trinket",
-        "raw": "Aeon Heart",
+        "raw": "Heart of Aeon",
         "items": [
-          "Aeon Heart"
+          "Heart of Aeon"
         ],
         "rowIndex": 12
       },
@@ -22168,7 +21664,7 @@
         "buildLabel": "T6 SoI build (alt)(DK)",
         "tier": null,
         "slot": "weapon",
-        "raw": "Frostmourne/Archanos",
+        "raw": "Frostmourne / Archanos",
         "items": [
           "Frostmourne",
           "Archanos"
@@ -22234,9 +21730,9 @@
         "buildLabel": "T6 SoI build (alt)(DK)",
         "tier": null,
         "slot": "trinket",
-        "raw": "Khan Medallion",
+        "raw": "Khan's Medallion",
         "items": [
-          "Khan Medallion"
+          "Khan's Medallion"
         ],
         "rowIndex": 13
       },
@@ -22286,10 +21782,10 @@
         "buildLabel": "T6 SoI build (alt)(rogue)",
         "tier": null,
         "slot": "body",
-        "raw": "Iceborn Cloak/Archon's Chest",
+        "raw": "Iceborn Cloak / Archon's Embrace",
         "items": [
           "Iceborn Cloak",
-          "Archon's Chest"
+          "Archon's Embrace"
         ],
         "rowIndex": 14
       },
@@ -22326,9 +21822,9 @@
         "buildLabel": "T6 SoI build (alt)(rogue)",
         "tier": null,
         "slot": "trinket",
-        "raw": "Khan Medallion",
+        "raw": "Khan's Medallion",
         "items": [
-          "Khan Medallion"
+          "Khan's Medallion"
         ],
         "rowIndex": 14
       },
@@ -22417,9 +21913,9 @@
         "buildLabel": "T6 SoI build (alt)(sin)",
         "tier": null,
         "slot": "trinket",
-        "raw": "Khan Medallion",
+        "raw": "Khan's Medallion",
         "items": [
-          "Khan Medallion"
+          "Khan's Medallion"
         ],
         "rowIndex": 15
       },
@@ -22508,9 +22004,9 @@
         "buildLabel": "T6 SoI build (alt)(mage)",
         "tier": null,
         "slot": "trinket",
-        "raw": "Khan Medallion",
+        "raw": "Khan's Medallion",
         "items": [
-          "Khan Medallion"
+          "Khan's Medallion"
         ],
         "rowIndex": 16
       },

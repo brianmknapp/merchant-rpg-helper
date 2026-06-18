@@ -5,6 +5,7 @@ import xlsx from "xlsx";
 const repoRoot = process.cwd();
 const workbookPath = path.join(repoRoot, "vendor", "Jackal's Merchant BIS Guide.xlsx");
 const outputPath = path.join(repoRoot, "lib", "bis-guide.json");
+const normalizationPath = path.join(repoRoot, "lib", "bis-item-normalization.json");
 
 const IGNORED_SHEETS = new Set(["Notes", "Endgame Calcs"]);
 const SLOT_NAME_BY_HEADER = {
@@ -16,6 +17,21 @@ const SLOT_NAME_BY_HEADER = {
   trinket: "trinket",
   potionprefix: "potionPrefix",
 };
+
+const normalization = fs.existsSync(normalizationPath)
+  ? JSON.parse(fs.readFileSync(normalizationPath, "utf8"))
+  : { blankValues: [], itemAliases: {}, contextualAliases: [] };
+
+const BLANK_VALUE_SET = new Set((normalization.blankValues ?? []).map((value) => normalizeText(value)));
+const ITEM_ALIASES = Object.fromEntries(
+  Object.entries(normalization.itemAliases ?? {}).map(([key, value]) => [normalizeText(key), normalizeText(value)]),
+);
+const CONTEXTUAL_ALIASES = (normalization.contextualAliases ?? []).map((entry) => ({
+  hero: normalizeText(entry.hero),
+  slot: normalizeText(entry.slot),
+  value: normalizeText(entry.value),
+  replacement: normalizeText(entry.replacement),
+}));
 
 function normalizeText(value) {
   if (value === null || value === undefined) return "";
@@ -33,13 +49,37 @@ function normalizeHeader(text) {
   return normalizeText(text).replace(/\s+/g, "").toLowerCase().replace(/[^a-z]/g, "");
 }
 
-function splitItems(rawValue) {
+function normalizeBisItem(hero, slot, rawItem) {
+  const item = normalizeText(rawItem);
+  if (!item || BLANK_VALUE_SET.has(item)) {
+    return "";
+  }
+
+  const contextualAlias = CONTEXTUAL_ALIASES.find(
+    (entry) => entry.hero === normalizeText(hero) && entry.slot === normalizeText(slot) && entry.value === item,
+  );
+  if (contextualAlias) {
+    return contextualAlias.replacement;
+  }
+
+  return ITEM_ALIASES[item] ?? item;
+}
+
+function normalizeBisCell(hero, slot, rawValue) {
   const raw = normalizeText(rawValue);
-  if (!raw) return [];
-  return raw
+  if (!raw || BLANK_VALUE_SET.has(raw)) {
+    return { raw: "", items: [] };
+  }
+
+  const items = raw
     .split("/")
-    .map((part) => normalizeText(part))
+    .map((part) => normalizeBisItem(hero, slot, part))
     .filter(Boolean);
+
+  return {
+    raw: items.join(" / "),
+    items,
+  };
 }
 
 function parseTier(buildLabel) {
@@ -80,12 +120,13 @@ function parseHeroSheet(sheetName, sheet) {
 
     for (const slotColumn of slotColumns) {
       const cellValue = getCell(sheet, r, slotColumn.col);
-      const items = splitItems(cellValue);
+      const normalizedCell = normalizeBisCell(sheetName, slotColumn.slot, cellValue);
+      const items = normalizedCell.items;
       if (items.length > 0) {
         rowHasItem = true;
       }
       slots[slotColumn.slot] = {
-        raw: cellValue,
+        raw: normalizedCell.raw,
         items,
       };
     }
