@@ -58,9 +58,9 @@ This repo is configured for a static GitHub Pages deployment from the `main` bra
 - Build output: `out/`
 - Pages source: set the repository to **GitHub Actions** in the Pages settings
 
-The workflow sets `NEXT_PUBLIC_BASE_PATH` automatically to `/<repo-name>` so the app works when hosted at `https://<user>.github.io/<repo-name>/`.
+The workflow uses `actions/configure-pages` and passes its `base_path` output to `NEXT_PUBLIC_BASE_PATH`, so routes and static assets resolve correctly for both project pages (for example `/<repo-name>`) and user/org root pages.
 
-If you rename the repository, the workflow continues to use the current repo name on the next deploy.
+If you rename the repository, the workflow continues to use the correct Pages base path on the next deploy.
 
 ## Test Pyramid
 

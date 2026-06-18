@@ -1,7 +1,13 @@
 import fs from "fs";
 import path from "path";
+import { normalizeBasePath } from "@/lib/base-path";
 
 const merchantAssetPaths = new Set<string>();
+const normalizedBasePath = normalizeBasePath(process.env.NEXT_PUBLIC_BASE_PATH);
+
+function withConfiguredBasePath(assetPath: string) {
+  return normalizedBasePath ? `${normalizedBasePath}${assetPath}` : assetPath;
+}
 
 function collectMerchantAssetPaths(dir: string, relativeDir = "") {
   if (!fs.existsSync(dir)) {
@@ -72,10 +78,12 @@ export function resolveMerchantAssetPath(rawPath: string | null | undefined) {
   for (const candidate of buildPathCandidates(rawPath)) {
     const encoded = encodeURI(`/merchant-db/${candidate}`);
     if (merchantAssetPaths.has(encoded)) {
-      return encoded;
+      return withConfiguredBasePath(encoded);
     }
   }
 
   return null;
 }
+
+
 
