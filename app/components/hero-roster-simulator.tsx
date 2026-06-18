@@ -988,50 +988,50 @@ export default function HeroRosterSimulator({
     return total;
   }, [prefixOptions, selectedGear, selectedHeroState.equipped, suffixOptions]);
 
-   const calculatedHeroStats = useMemo<HeroComputedStats | null>(() => {
-     if (!selectedHero) {
-       return null;
-     }
+  const calculatedHeroStats = useMemo<HeroComputedStats | null>(() => {
+    if (!selectedHero) {
+      return null;
+    }
 
-     const heroLevel = selectedHeroState.level;
-     const heroPrestige = selectedHeroState.prestige;
-     const heroBaseStats = getHeroStatsForProgression(selectedHero, heroLevel, heroPrestige);
-     const heroScaling = getHeroScalingForPrestige(selectedHero, heroPrestige);
+    const heroLevel = selectedHeroState.level;
+    const heroPrestige = selectedHeroState.prestige;
+    const heroBaseStats = getHeroStatsForProgression(selectedHero, heroLevel, heroPrestige);
+    const heroScaling = getHeroScalingForPrestige(selectedHero, heroPrestige);
 
-     const totalStr = selectedHeroState.attributes.str + totalGearBonus.str;
-     const totalInt = selectedHeroState.attributes.int + totalGearBonus.int;
-     const totalDex = selectedHeroState.attributes.dex + totalGearBonus.dex;
+    const totalStr = selectedHeroState.attributes.str + totalGearBonus.str;
+    const totalInt = selectedHeroState.attributes.int + totalGearBonus.int;
+    const totalDex = selectedHeroState.attributes.dex + totalGearBonus.dex;
 
-     const baseHp = heroBaseStats.hp + totalGearBonus.hp;
-     const baseAtk = heroBaseStats.atk + totalGearBonus.atk + totalStr * heroScaling.strToAtk;
-     const baseMatk = heroBaseStats.matk + totalGearBonus.matk + totalInt * heroScaling.intToMatk;
-     const baseDef = heroBaseStats.def + totalGearBonus.def;
-     const baseMdef = heroBaseStats.mdef + totalGearBonus.mdef;
-     const baseAcc = heroBaseStats.acc + totalGearBonus.acc + totalDex * heroScaling.dexToAcc;
-     const maxHp = applyPercent(baseHp, totalGearBonus.hpPct);
+    const baseHp = heroBaseStats.hp + totalGearBonus.hp;
+    const baseAtk = heroBaseStats.atk + totalGearBonus.atk + totalStr * heroScaling.strToAtk;
+    const baseMatk = heroBaseStats.matk + totalGearBonus.matk + totalInt * heroScaling.intToMatk;
+    const baseDef = heroBaseStats.def + totalGearBonus.def;
+    const baseMdef = heroBaseStats.mdef + totalGearBonus.mdef;
+    const baseAcc = heroBaseStats.acc + totalGearBonus.acc + totalDex * heroScaling.dexToAcc;
+    const maxHp = applyPercent(baseHp, totalGearBonus.hpPct);
 
-     const baseAp = getBaseApForLevel(heroLevel) + totalGearBonus.ap;
+    const baseAp = getBaseApForLevel(heroLevel) + totalGearBonus.ap;
 
-     return {
-       hp: maxHp,
-       currentHp: maxHp,
-       atk: applyPercent(baseAtk, totalGearBonus.atkPct),
-       matk: applyPercent(baseMatk, totalGearBonus.matkPct),
-       def: applyPercent(baseDef, totalGearBonus.defPct),
-       mdef: applyPercent(baseMdef, totalGearBonus.mdefPct),
-       acc: applyPercent(baseAcc, totalGearBonus.accPct),
-       crit: heroBaseStats.crit + totalGearBonus.crit,
-       str: totalStr,
-       int: totalInt,
-       dex: totalDex,
-       lck: totalGearBonus.lck,
-       speed: totalGearBonus.speed,
-       ap: baseAp,
-       exp: totalGearBonus.exp,
-       critDmg: 200 + totalGearBonus.critDmg,
-       gold: totalGearBonus.gold,
-     };
-   }, [selectedHero, selectedHeroState.attributes, selectedHeroState.level, selectedHeroState.prestige, totalGearBonus]);
+    return {
+      hp: maxHp,
+      currentHp: maxHp,
+      atk: applyPercent(baseAtk, totalGearBonus.atkPct),
+      matk: applyPercent(baseMatk, totalGearBonus.matkPct),
+      def: applyPercent(baseDef, totalGearBonus.defPct),
+      mdef: applyPercent(baseMdef, totalGearBonus.mdefPct),
+      acc: applyPercent(baseAcc, totalGearBonus.accPct),
+      crit: heroBaseStats.crit + totalGearBonus.crit,
+      str: totalStr,
+      int: totalInt,
+      dex: totalDex,
+      lck: totalGearBonus.lck,
+      speed: totalGearBonus.speed,
+      ap: baseAp,
+      exp: totalGearBonus.exp,
+      critDmg: 200 + totalGearBonus.critDmg,
+      gold: totalGearBonus.gold,
+    };
+  }, [selectedHero, selectedHeroState.attributes, selectedHeroState.level, selectedHeroState.prestige, totalGearBonus]);
 
   const computedHeroStats = useMemo<HeroComputedStats | null>(() => {
     if (!calculatedHeroStats) {
@@ -1823,10 +1823,10 @@ export default function HeroRosterSimulator({
                     <Card className="md:col-span-2">
                       <CardHeader className="flex flex-row items-start justify-between gap-3 space-y-0">
                         <div>
-                        <CardTitle>Current Stats</CardTitle>
-                        <CardDescription>
-                          Edit any value directly (including STR/INT/DEX). Use reset to return to calculated values.
-                        </CardDescription>
+                          <CardTitle>Current Stats</CardTitle>
+                          <CardDescription>
+                            Edit any value directly. Overrides are display-only and do not recalculate derived scaling values.
+                          </CardDescription>
                         </div>
                         <Button type="button" variant="outline" size="sm" onClick={clearStatOverrides} disabled={!hasStatOverrides}>
                           Reset to calculated
