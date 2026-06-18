@@ -1,11 +1,11 @@
 import { expect, test } from "@playwright/test";
 
-test("home page renders the hero hall shell", async ({ page }) => {
+test("home page renders the game mode selector", async ({ page }) => {
   await page.goto("/");
 
   await expect(page.getByRole("heading", { level: 1, name: "Merchant Hero Hall" })).toBeVisible();
-  await expect(page.getByText("Quest Enemy", { exact: true })).toBeVisible();
-  await expect(page.getByText("Saved Loadout", { exact: true })).toBeVisible();
+  await expect(page.getByText("Select Game Mode", { exact: true })).toBeVisible();
+  await expect(page.getByRole("button", { name: /Standard/i })).toBeVisible();
 });
 
 test("item page honors shareable query params", async ({ page }) => {
