@@ -10,8 +10,8 @@ async function loadResolverFor(basePath: string | undefined) {
   }
 
   jest.resetModules();
-  const module = await import("@/lib/merchant-assets");
-  return module.resolveMerchantAssetPath;
+  const merchantAssets = await import("@/lib/merchant-assets");
+  return merchantAssets.resolveMerchantAssetPath;
 }
 
 afterEach(() => {
@@ -40,4 +40,5 @@ describe("resolveMerchantAssetPath", () => {
     );
   });
 });
+
 
