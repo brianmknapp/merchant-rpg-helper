@@ -40,6 +40,11 @@ const heroes: Hero[] = [
 
 const gearItems: GearItem[] = [];
 
+function addWarriorToRoster() {
+  fireEvent.click(screen.getByRole("button", { name: "Add Hero" }));
+  fireEvent.click(screen.getByRole("button", { name: /warrior/i }));
+}
+
 describe("HeroRosterSimulator", () => {
   test("applies hero level and hero prestige to the selected hero progression", () => {
     window.localStorage.clear();
@@ -55,19 +60,21 @@ describe("HeroRosterSimulator", () => {
       />,
     );
 
-    expect(screen.getByText("Hero progression: Lv 1 • P0")).toBeTruthy();
-    expect(screen.getByText("HP 100")).toBeTruthy();
+    addWarriorToRoster();
+
+    expect(screen.getByText("Level 1 • P0")).toBeTruthy();
+    expect(screen.getByLabelText("Max HP")).toHaveValue(100);
 
     fireEvent.change(screen.getByLabelText("Level"), { target: { value: "3" } });
 
-    expect(screen.getByText("Hero progression: Lv 3 • P0")).toBeTruthy();
-    expect(screen.getByText("HP 120")).toBeTruthy();
+    expect(screen.getByText("Level 3 • P0")).toBeTruthy();
+    expect(screen.getByLabelText("Max HP")).toHaveValue(120);
 
-    fireEvent.click(screen.getByLabelText("Hero Prestige"));
+    fireEvent.click(screen.getByRole("combobox", { name: "Hero Prestige" }));
     fireEvent.click(screen.getByText("P2"));
 
-    expect(screen.getByText("Hero progression: Lv 3 • P2")).toBeTruthy();
-    expect(screen.getByText("HP 160")).toBeTruthy();
+    expect(screen.getByText("Level 3 • P2")).toBeTruthy();
+    expect(screen.getByLabelText("Max HP")).toHaveValue(160);
   });
 
   test("loads saved exact gear bonuses and uses them in hero stats", async () => {
@@ -112,9 +119,10 @@ describe("HeroRosterSimulator", () => {
       JSON.stringify({
         version: 1,
         gameMode: "standard",
-        selectedHeroId: 1,
+        selectedHeroId: "roster-1",
         heroes: {
-          1: {
+          "roster-1": {
+            heroId: 1,
             level: 1,
             prestige: 0,
             attributes: { str: 0, int: 0, dex: 0 },
@@ -143,14 +151,9 @@ describe("HeroRosterSimulator", () => {
     );
 
     await waitFor(() => {
-      expect(screen.getByText("Uses exact stat overrides")).toBeTruthy();
-      expect(screen.getByText("HP 155")).toBeTruthy();
+      expect(screen.getByText("Level 1 • P0")).toBeTruthy();
+      expect(screen.getByLabelText("Max HP")).toHaveValue(155);
+      expect(screen.getByText("Training Sword")).toBeTruthy();
     });
   });
 });
-
-
-
-
-
-
