@@ -1,4 +1,4 @@
-import { afterEach, describe, expect, test } from "@jest/globals";
+import { afterEach, describe, expect, jest, test } from "@jest/globals";
 
 const ORIGINAL_BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH;
 
@@ -40,5 +40,6 @@ describe("resolveMerchantAssetPath", () => {
     );
   });
 });
+
 
 

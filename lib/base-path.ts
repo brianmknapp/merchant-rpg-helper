@@ -1,11 +1,9 @@
 export function normalizeBasePath(rawBasePath: string | null | undefined) {
-  const trimmed = rawBasePath?.trim() ?? "";
+  const stripped = rawBasePath?.trim().replace(/^\/+|\/+$/g, "") ?? "";
 
-  if (!trimmed || trimmed === "/") {
+  if (!stripped) {
     return "";
   }
 
-  const withLeadingSlash = trimmed.startsWith("/") ? trimmed : `/${trimmed}`;
-  return withLeadingSlash.replace(/\/+$/, "");
+  return `/${stripped}`;
 }
-
