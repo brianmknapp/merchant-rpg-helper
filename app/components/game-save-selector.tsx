@@ -1,7 +1,6 @@
 "use client";
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
 import { GAME_MODES, type GameMode } from "@/lib/game-modes";
 import { ChevronRight } from "lucide-react";
 import { cn } from "@/lib/utils";

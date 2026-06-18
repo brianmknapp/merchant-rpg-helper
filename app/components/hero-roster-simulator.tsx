@@ -450,10 +450,6 @@ function applyExactBonusOverrides(
   return next;
 }
 
-function hasExactBonusOverrides(exactBonus: ExactGearBonusOverrides | null | undefined) {
-  return Boolean(exactBonus && Object.keys(exactBonus).length > 0);
-}
-
 function isAffixUnlocked(
   affix: { ascLevel?: number | null } | undefined,
   prestige: PrestigeLevel,
@@ -626,7 +622,7 @@ function getHeroStatsForProgression(hero: Hero, level: number, prestige: Prestig
   };
 }
 
-function createDefaultSaveState(gameMode: string, heroes: Hero[]): SaveState {
+function createDefaultSaveState(gameMode: string): SaveState {
   return {
     version: 1,
     gameMode,
@@ -683,7 +679,7 @@ function normalizeSlotState(
 }
 
 function normalizeSaveState(gameMode: string, heroes: Hero[], input: SaveState | null | undefined): SaveState {
-  const fallback = createDefaultSaveState(gameMode, heroes);
+  const fallback = createDefaultSaveState(gameMode);
   if (!input || input.version !== 1) {
     return fallback;
   }
@@ -733,7 +729,7 @@ function normalizeSaveState(gameMode: string, heroes: Hero[], input: SaveState |
 }
 
 function loadSavedState(gameMode: string, heroes: Hero[]): SaveState {
-  const fallback = createDefaultSaveState(gameMode, heroes);
+  const fallback = createDefaultSaveState(gameMode);
 
   if (typeof window === "undefined") {
     return fallback;
@@ -766,7 +762,7 @@ function normalizeSearchValue(value: string) {
     .trim();
 }
 
-function toPublicAssetPath(path: string | null) {
+function toPublicAssetPath(path: string | null | undefined) {
   return path ? encodeURI(path) : null;
 }
 
@@ -829,7 +825,7 @@ export default function HeroRosterSimulator({
   onBackClick,
 }: HeroRosterSimulatorProps) {
   const itemButtonRefs = useRef<Record<number, HTMLButtonElement | null>>({});
-  const [saveState, setSaveState] = useState<SaveState>(() => createDefaultSaveState(gameMode, heroes));
+  const [saveState, setSaveState] = useState<SaveState>(() => createDefaultSaveState(gameMode));
   const [isHydrated, setIsHydrated] = useState(false);
   const [activeSlotByHero, setActiveSlotByHero] = useState<Record<string, GearSlot>>({});
   const [tierFilterBySlot, setTierFilterBySlot] = useState<Partial<Record<GearSlot, number>>>({});
@@ -1483,7 +1479,7 @@ export default function HeroRosterSimulator({
   };
 
   const resetLocalSave = () => {
-    const fresh = createDefaultSaveState(gameMode, heroes);
+    const fresh = createDefaultSaveState(gameMode);
     setSaveState(fresh);
     setActiveSlotByHero({});
     if (typeof window !== "undefined") {
@@ -1718,18 +1714,23 @@ export default function HeroRosterSimulator({
                     <div className="rounded-2xl border border-input bg-muted/20 p-3">
                       <div className="grid gap-2 md:grid-cols-[1fr_190px_1fr] md:items-center">
                         <div className="grid grid-cols-1 gap-1.5">
-                          {(["weapon", "head", "body"] as GearSlot[]).map((slot) => (
-                            <SlotButton
-                              key={slot}
-                              slot={slot}
-                              active={activeSlot === slot}
-                              item={selectedGear[slot]}
-                              itemImagePath={toPublicAssetPath(selectedGear[slot]?.imagePath)}
-                              imageMissing={selectedGear[slot]?.imagePath ? Boolean(missingItemImages[toPublicAssetPath(selectedGear[slot]!.imagePath)]) : false}
-                              quality={selectedHeroState.equipped[slot].quality}
-                              onClick={() => handleOpenSlotEditor(slot)}
-                            />
-                          ))}
+                          {(["weapon", "head", "body"] as GearSlot[]).map((slot) => {
+                            const itemImagePath = toPublicAssetPath(selectedGear[slot]?.imagePath);
+                            const imageMissing = itemImagePath ? Boolean(missingItemImages[itemImagePath]) : false;
+
+                            return (
+                              <SlotButton
+                                key={slot}
+                                slot={slot}
+                                active={activeSlot === slot}
+                                item={selectedGear[slot]}
+                                itemImagePath={itemImagePath}
+                                imageMissing={imageMissing}
+                                quality={selectedHeroState.equipped[slot].quality}
+                                onClick={() => handleOpenSlotEditor(slot)}
+                              />
+                            );
+                          })}
                         </div>
 
                         <div className="rounded-2xl border border-input bg-card p-2.5">
@@ -1768,18 +1769,23 @@ export default function HeroRosterSimulator({
                         </div>
 
                         <div className="grid grid-cols-1 gap-1.5">
-                          {(["hands", "feet", "trinket"] as GearSlot[]).map((slot) => (
-                            <SlotButton
-                              key={slot}
-                              slot={slot}
-                              active={activeSlot === slot}
-                              item={selectedGear[slot]}
-                              itemImagePath={toPublicAssetPath(selectedGear[slot]?.imagePath)}
-                              imageMissing={selectedGear[slot]?.imagePath ? Boolean(missingItemImages[toPublicAssetPath(selectedGear[slot]!.imagePath)]) : false}
-                              quality={selectedHeroState.equipped[slot].quality}
-                              onClick={() => handleOpenSlotEditor(slot)}
-                            />
-                          ))}
+                          {(["hands", "feet", "trinket"] as GearSlot[]).map((slot) => {
+                            const itemImagePath = toPublicAssetPath(selectedGear[slot]?.imagePath);
+                            const imageMissing = itemImagePath ? Boolean(missingItemImages[itemImagePath]) : false;
+
+                            return (
+                              <SlotButton
+                                key={slot}
+                                slot={slot}
+                                active={activeSlot === slot}
+                                item={selectedGear[slot]}
+                                itemImagePath={itemImagePath}
+                                imageMissing={imageMissing}
+                                quality={selectedHeroState.equipped[slot].quality}
+                                onClick={() => handleOpenSlotEditor(slot)}
+                              />
+                            );
+                          })}
                         </div>
                       </div>
                     </div>
@@ -2469,16 +2475,4 @@ function SlotButton({
     </button>
   );
 }
-
-function StatLine({ label, value }: { label: string; value: number }) {
-  return (
-    <div className="flex items-center justify-between rounded-lg border border-input bg-background px-2 py-1.5 text-sm">
-      <span className="font-medium text-foreground">{label}</span>
-      <span className="text-muted-foreground">{formatValue(value)}</span>
-    </div>
-  );
-}
-
-
-
 
