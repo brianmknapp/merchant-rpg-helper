@@ -1,7 +1,7 @@
 import { describe, expect, test } from "@jest/globals";
 import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import HeroRosterSimulator from "@/app/components/hero-roster-simulator";
-import type { GearItem, Hero, Quest } from "@/app/components/phase1-simulator";
+import type { GearItem, Hero } from "@/app/components/phase1-simulator";
 
 const heroes: Hero[] = [
   {
@@ -38,26 +38,6 @@ const heroes: Hero[] = [
   },
 ];
 
-const quests: Quest[] = [
-  {
-    id: 1,
-    name: "Test Quest",
-    title: "Training",
-    region: 1,
-    levelReq: 1,
-    enemy: {
-      hp: 100,
-      atk: 1,
-      matk: 1,
-      def: 1,
-      mdef: 1,
-      eva: 1,
-    },
-    iconPath: null,
-    enemyImagePath: null,
-  },
-];
-
 const gearItems: GearItem[] = [];
 
 describe("HeroRosterSimulator", () => {
@@ -67,11 +47,11 @@ describe("HeroRosterSimulator", () => {
     render(
       <HeroRosterSimulator
         heroes={heroes}
-        quests={quests}
         gearItems={gearItems}
         bisEntries={[]}
         prefixOptions={[]}
         suffixOptions={[]}
+        gameMode="standard"
       />,
     );
 
@@ -128,11 +108,11 @@ describe("HeroRosterSimulator", () => {
     };
 
     window.localStorage.setItem(
-      "merchant-rpg-helper.hero-roster.v1",
+      "merchant-rpg-helper.hero-roster.v1.standard",
       JSON.stringify({
         version: 1,
+        gameMode: "standard",
         selectedHeroId: 1,
-        selectedQuestId: 1,
         heroes: {
           1: {
             level: 1,
@@ -154,11 +134,11 @@ describe("HeroRosterSimulator", () => {
     render(
       <HeroRosterSimulator
         heroes={heroes}
-        quests={quests}
         gearItems={[trainingSword]}
         bisEntries={[]}
         prefixOptions={[]}
         suffixOptions={[]}
+        gameMode="standard"
       />,
     );
 
@@ -168,6 +148,9 @@ describe("HeroRosterSimulator", () => {
     });
   });
 });
+
+
+
 
 
 

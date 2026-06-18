@@ -1,14 +1,13 @@
-import type { GearItem, Hero, Quest } from "@/app/components/phase1-simulator";
-import HeroRosterSimulator from "@/app/components/hero-roster-simulator";
+import type { GearItem, Hero } from "@/app/components/phase1-simulator";
+import HeroRosterPage from "@/app/components/hero-roster-page";
 import type { BisEntrySuggestion } from "@/app/components/hero-roster-simulator";
 import { queryBisEntries } from "@/lib/bis-guide";
 import rawEquipmentList from "@/lib/EquipmentList.json";
 import rawHeroList from "@/lib/HeroList.json";
-import rawQuestList from "@/lib/QuestList.json";
-import { resolveMerchantAssetPath } from "@/lib/merchant-assets";
 import rawFormulaList from "@/lib/FormulaList.json";
 import rawPrefixList from "@/lib/PrefixList.json";
 import rawSuffixList from "@/lib/SuffixList.json";
+import { resolveMerchantAssetPath } from "@/lib/merchant-assets";
 
 type RawAffix = {
   name: string;
@@ -75,21 +74,6 @@ type RawFormulaEntry = Partial<{
 }>;
 
 const formulaBySubtype = rawFormulaList as Record<string, RawFormulaEntry>;
-
-type RawQuest = {
-  levelReq?: number;
-  name?: string;
-  title?: string;
-  region?: number;
-  enemyHp?: number;
-  enemyAtk?: number;
-  enemyMatk?: number;
-  enemyDef?: number;
-  enemyMdef?: number;
-  enemyEva?: number;
-  image?: string;
-  enemyImage?: string;
-};
 
 const heroes: Hero[] = (rawHeroList as RawHero[]).map((hero) => ({
   id: hero.class,
@@ -237,40 +221,6 @@ const gearItems: GearItem[] = (rawEquipmentList as RawEquipment[])
   })
   .filter((item): item is GearItem => item !== null);
 
-const quests: Quest[] = (rawQuestList as RawQuest[])
-  .filter(
-    (quest) =>
-      typeof quest.name === "string" &&
-      quest.name.length > 0 &&
-      typeof quest.enemyHp === "number" &&
-      typeof quest.enemyAtk === "number" &&
-      typeof quest.enemyMatk === "number" &&
-      typeof quest.enemyDef === "number" &&
-      typeof quest.enemyMdef === "number" &&
-      typeof quest.enemyEva === "number" &&
-      typeof quest.levelReq === "number",
-  )
-  .map((quest, index) => ({
-    id: index,
-    name: quest.name as string,
-    title: quest.title || "Quest",
-    region: quest.region ?? 0,
-    levelReq: quest.levelReq as number,
-    enemy: {
-      hp: quest.enemyHp as number,
-      atk: quest.enemyAtk as number,
-      matk: quest.enemyMatk as number,
-      def: quest.enemyDef as number,
-      mdef: quest.enemyMdef as number,
-      eva: quest.enemyEva as number,
-    },
-    iconPath: toPublicAssetPath(quest.image ? `/merchant-db/Quests/${quest.image}.png` : null),
-    enemyImagePath: toPublicAssetPath(
-      quest.enemyImage
-        ? `/merchant-db/Enemies/${quest.enemyImage}.png`
-        : null,
-    ),
-  }));
 
 const bisEntries = queryBisEntries() as BisEntrySuggestion[];
 
@@ -299,9 +249,8 @@ export const suffixOptions = Object.entries(suffixList)
 
 export default function Home() {
   return (
-    <HeroRosterSimulator
+    <HeroRosterPage
       heroes={heroes}
-      quests={quests}
       gearItems={gearItems}
       bisEntries={bisEntries}
       prefixOptions={prefixOptions}
